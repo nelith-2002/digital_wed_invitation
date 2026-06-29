@@ -1,0 +1,602 @@
+.weddingRoot {
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+.coupleFont {
+  font-family: var(--font-cookie), cursive;
+}
+
+/* ── Hero Section ── */
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ── Floral Decorations ── */
+.floralLeft {
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  transform: rotate(65deg);
+}
+
+.floralRight {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  transform: rotate(-120deg) scaleX(-1);
+}
+
+@media (min-width: 640px) {
+  .floralLeft { width: 300px; height: 300px; bottom: -80px; left: -80px; }
+  .floralRight { width: 300px; height: 300px; top: -80px; right: -80px; }
+}
+
+@media (min-width: 1024px) {
+  .floralLeft { width: 443px; height: 443px; bottom: -100px; left: -100px; }
+  .floralRight { width: 443px; height: 443px; top: -100px; right: -100px; }
+}
+
+/* ── Hero Content — 3 row grid ── */
+/* ── Hero Content — 3 row grid ── */
+.heroContent {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-rows: 1fr 2.5fr 1.5fr;  /* ← bottom row smaller = moves up */
+  align-items: center;
+  justify-items: center;
+  padding: 20px 16px;
+}
+
+.heroTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.heroMiddle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.heroBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 2px;           /* ← reduced from 4px */
+  margin-top: -20px;  /* ← pulls it up */
+}
+
+.floralRing {
+  width: clamp(300px, 55vw, 450px);
+  height: clamp(350px, 63vw, 518px);
+  object-fit: contain;
+  transform: rotate(-8deg);
+}
+
+
+
+/* ── Countdown Section ── */
+/* ── Countdown Section ── */
+.countdownSection {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px 16px;
+}
+
+.countdownBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.countdownBorder {
+  position: relative;
+  z-index: 2;
+  border: 2.5px solid #c9a84c;
+  border-radius: 16px;
+  padding: 30px 20px;        /* mobile */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  background: transparent;
+}
+
+.countdownTitle {
+  text-align: center;
+}
+
+.countdownSubtitle {
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(0.6rem, 2vw, 0.9rem);
+  color: #3b2a1a;
+  letter-spacing: 0.2em;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.countdownHeading {
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  color: #3b2a1a;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* Wrapper for boxes + labels */
+.countdownWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Top row — boxes and colons */
+.countdownBoxRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.countdownBoxGroup {
+  display: flex;
+  align-items: center;
+}
+
+/* Gold box */
+.countdownBox {
+  width: clamp(55px, 14vw, 110px);
+  height: clamp(55px, 14vw, 110px);
+  background: linear-gradient(145deg, #d4a843, #dcac53, #e8c76a, #b8852e);
+  border-radius: clamp(8px, 1.5vw, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(180, 130, 40, 0.3);
+}
+
+.countdownNumber {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.5rem, 6vw, 3.2rem);
+  color: #080609;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.countdownColon {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.2rem, 4vw, 2.5rem);
+  color: #302a1a;
+  font-weight: 400;
+  padding: 0 clamp(4px, 1vw, 12px);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+/* Label row */
+.countdownLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.countdownLabel {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(0.6rem, 2vw, 0.9rem);
+  color: #1b130c;
+  letter-spacing: 0.1em;
+  text-align: center;
+  width: clamp(55px, 14vw, 110px);
+}
+
+.countdownLabel:not(:last-child) {
+  margin-right: clamp(12px, 3vw, 28px);
+}
+
+/* ── Tablet ── */
+@media (min-width: 640px) {
+  .countdownBorder {
+    padding: 40px 50px;
+    gap: 24px;
+  }
+}
+
+/* ── Desktop ── */
+@media (min-width: 1024px) {
+  .countdownBorder {
+    padding: 50px 80px;
+    gap: 28px;
+  }
+}
+
+
+/* ── Events Section ── */
+.eventsSection {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.eventsBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;    /* ← background stays behind */
+}
+
+.eventsDate {
+  position: relative;
+  z-index: 3;    /* ← above background */
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(0.75rem, 2vw, 0.95rem);
+  color: #b8912a;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+}
+
+.eventsTitle {
+  position: relative;
+  z-index: 3;    /* ← above background */
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: #2f2119;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-top: -8px;
+}
+
+.eventsDividerImg {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 250px;
+  margin-top: -20px;
+}
+
+.eventsGrid {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  max-width: 700px;
+}
+
+@media (min-width: 640px) {
+  .eventsGrid {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 48px;
+  }
+}
+
+.eventCardImg {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 350px;
+  margin-top: -30px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.eventCardImg:hover {
+  transform: translateY(-10px);
+  filter: drop-shadow(0 20px 30px rgba(180, 130, 40, 0.25));
+}
+
+.saveOurDateWrapper {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 560px;
+}
+
+/* Save Our Date Button */
+.saveOurDateBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border: 1.5px solid #c9a84c;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.saveOurDateBtn:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.saveOurDateLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+
+.saveOurDateIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #2f2119;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.saveOurDateTitle {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #2f2119;
+  font-weight: 600;
+  text-align: left;
+}
+
+.saveOurDateSub {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+  color: #7a6a5a;
+  text-align: left;
+}
+
+.saveOurDateChevron {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0ebe3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Calendar Dropdown */
+.calendarDropdown {
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid #c9a84c;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.calendarLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.calendarLink:last-child {
+  border-bottom: none;
+}
+
+.calendarLink:hover {
+  background: #fdf6e8;
+}
+
+.calendarLinkLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.calendarIconBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendarLinkText {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: #2f2119;
+  font-weight: 500;
+}
+
+.calendarDivider {
+  height: 1px;
+  background: #f0e8d8;
+  margin: 0 20px;
+}
+
+
+
+/* ── Story Section ── */
+.storySection {
+  position: relative;
+  width: 100%;
+  padding: 60px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.storyBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.storyContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 680px;
+}
+
+/* Title */
+.storyTitle {
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  color: #2f2119;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* Story Text */
+.storyText {
+  font-family: var(--font-corinthia), cursive;  /* ← Corinthia font */
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  color: #5c4a3a;
+  line-height: 1.9;
+  max-width: 520px;
+}
+
+/* Frame Wrapper — positions couple on top of frame */
+.storyFrameWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 10px;
+}
+
+/* Gold floral frame */
+.storyFrame {
+  width: 100%;
+}
+
+/* Couple image — absolute centered inside frame */
+.storyCoupleImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: 65%;
+  z-index: 2;
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+  .storyFrameWrapper {
+    max-width: 380px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .storyFrameWrapper {
+    max-width: 420px;
+  }
+}
+
+
+
+/* ── Music Button — fixed on screen ── */
+.musicBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(47, 33, 25, 0.85);
+  border: 1.5px solid #c9a84c;
+  color: #c9a84c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.musicBtn:hover {
+  transform: scale(1.1);
+  background: rgba(47, 33, 25, 1);
+}
+
+/* Animated music bars */
+.musicBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+}
+
+.musicBar {
+  width: 3px;
+  background: #c9a84c;
+  border-radius: 2px;
+  animation: musicBarBounce 1s ease-in-out infinite;
+}
+
+.musicBar:nth-child(1) { animation-delay: 0s;    height: 8px; }
+.musicBar:nth-child(2) { animation-delay: 0.2s;  height: 16px; }
+.musicBar:nth-child(3) { animation-delay: 0.4s;  height: 10px; }
+.musicBar:nth-child(4) { animation-delay: 0.6s;  height: 14px; }
+
+@keyframes musicBarBounce {
+  0%, 100% { transform: scaleY(0.5); }
+  50%       { transform: scaleY(1.2); }
+}

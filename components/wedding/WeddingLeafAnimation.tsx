@@ -75,7 +75,7 @@ export default function WeddingLeafAnimation() {
           }}
         >
           <Image
-            src="/wedding/gold-leaf.png"
+            src="/wedding/your-new-image.png"
             alt=""
             width={leaf.size}
             height={leaf.size}

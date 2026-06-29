@@ -3,6 +3,7 @@ import WeddingHero from "@/components/wedding/WeddingHero";
 import WeddingCountdown from "@/components/wedding/WeddingCountdown";
 import WeddingLeafAnimation from "@/components/wedding/WeddingLeafAnimation";
 import Image from "next/image";
+import WeddingEvents from "@/components/wedding/WeddingEvents";
 
 export default function WeddingPage() {
   return (
@@ -22,6 +23,7 @@ export default function WeddingPage() {
       <WeddingLeafAnimation />
       <WeddingHero />
       <WeddingCountdown />
+      <WeddingEvents /> 
 
     </main>
   );

@@ -459,3 +459,91 @@
   background: #f0e8d8;
   margin: 0 20px;
 }
+
+
+
+/* ── Story Section ── */
+.storySection {
+  position: relative;
+  width: 100%;
+  padding: 60px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.storyBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.storyContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 680px;
+}
+
+/* Title */
+.storyTitle {
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  color: #2f2119;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* Story Text */
+.storyText {
+  font-family: var(--font-corinthia), cursive;  /* ← Corinthia font */
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  color: #5c4a3a;
+  line-height: 1.9;
+  max-width: 520px;
+}
+
+/* Frame Wrapper — positions couple on top of frame */
+.storyFrameWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 10px;
+}
+
+/* Gold floral frame */
+.storyFrame {
+  width: 100%;
+}
+
+/* Couple image — absolute centered inside frame */
+.storyCoupleImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: 65%;
+  z-index: 2;
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+  .storyFrameWrapper {
+    max-width: 380px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .storyFrameWrapper {
+    max-width: 420px;
+  }
+}

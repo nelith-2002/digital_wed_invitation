@@ -6,16 +6,7 @@ export default function WeddingHero() {
   return (
     <section className={styles.heroSection}>
 
-      {/* Background */}
-      <div className={styles.heroBg}>
-        <Image
-          src="/wedding/hero-bg.jpg"
-          alt="Wedding background"
-          fill
-          style={{ objectFit: "cover" }}
-          priority
-        />
-      </div>
+
 
       {/* Left Floral */}
       <div className={styles.floralLeft}>

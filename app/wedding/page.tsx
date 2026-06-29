@@ -1,13 +1,28 @@
 import styles from "./wedding.module.css";
 import WeddingHero from "@/components/wedding/WeddingHero";
+import WeddingCountdown from "@/components/wedding/WeddingCountdown";
 import WeddingLeafAnimation from "@/components/wedding/WeddingLeafAnimation";
+import Image from "next/image";
 
 export default function WeddingPage() {
   return (
     <main className={styles.weddingRoot}>
-      <WeddingLeafAnimation />  {/* ← whole page overlay */}
+
+      {/* Global background for whole page */}
+      <div className={styles.globalBg}>
+        <Image
+          src="/wedding/hero-bg.jpg"
+          alt=""
+          fill
+          style={{ objectFit: "cover" }}
+          priority
+        />
+      </div>
+
+      <WeddingLeafAnimation />
       <WeddingHero />
-      {/* more sections */}
+      <WeddingCountdown />
+
     </main>
   );
 }

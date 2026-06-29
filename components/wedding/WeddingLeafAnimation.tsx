@@ -13,19 +13,16 @@ interface Leaf {
 }
 
 export default function WeddingLeafAnimation() {
-  const [leaves, setLeaves] = useState<Leaf[]>([]);
-
-  useEffect(() => {
-    const generated: Leaf[] = Array.from({ length: 12 }, (_, i) => ({
+  const [leaves] = useState<Leaf[]>(() =>
+    Array.from({ length: 12 }, (_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
       animationDuration: `${6 + Math.random() * 6}s`,   // 6s–12s fall speed
       animationDelay: `${Math.random() * 8}s`,           // staggered start
       size: 20 + Math.random() * 20,                     // 20px–40px
       rotation: Math.random() * 360,                     // random rotation
-    }));
-    setLeaves(generated);
-  }, []);
+    }))
+  );
 
   return (
     <>

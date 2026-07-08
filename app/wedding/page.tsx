@@ -6,6 +6,11 @@ import Image from "next/image";
 import WeddingEvents from "@/components/wedding/WeddingEvents";
 import WeddingStory from "@/components/wedding/WeddingStory";
 import WeddingMusic from "@/components/wedding/WeddingMusic";
+import WeddingLocation from "@/components/wedding/WeddingLocation";
+import WeddingRSVP from "@/components/wedding/WeddingRSVP";
+import WeddingFooter from "@/components/wedding/WeddingFooter";
+
+
 
 export default function WeddingPage() {
   return (
@@ -29,6 +34,9 @@ export default function WeddingPage() {
       <WeddingCountdown />
       <WeddingEvents /> 
       <WeddingStory />
+      <WeddingLocation />
+      <WeddingRSVP />  
+      <WeddingFooter /> 
 
     </main>
   );

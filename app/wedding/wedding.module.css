@@ -119,7 +119,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
 .countdownBorder {
@@ -599,4 +599,612 @@
 @keyframes musicBarBounce {
   0%, 100% { transform: scaleY(0.5); }
   50%       { transform: scaleY(1.2); }
+}
+
+
+
+/* ── Location Section ── */
+.locationSection {
+  position: relative;
+  width: 100%;
+  padding: 60px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.locationBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.locationContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Title */
+.locationTitleWrapper {
+  text-align: center;
+}
+
+.locationSubtitle {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: #b8912a;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+
+.locationTitle {
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: #2f2119;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Row — card + map */
+.locationRow {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  align-items: center;    /* ← center on mobile */
+}
+
+@media (min-width: 768px) {
+  .locationRow {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 32px;
+  }
+}
+
+/* ── Venue Card ── */
+.venueCard {
+  position: relative;
+  background: rgba(255, 248, 240, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid #c9a84c;
+  border-radius: 12px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  flex: 1;
+  min-width: 240px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .venueCard {
+    margin: 0;
+  }
+}
+
+/* Corner decorations */
+.corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: #c9a84c;
+  border-style: solid;
+}
+
+.cornerTL {
+  top: 6px;
+  left: 6px;
+  border-width: 2px 0 0 2px;
+}
+
+.cornerTR {
+  top: 6px;
+  right: 6px;
+  border-width: 2px 2px 0 0;
+}
+
+.cornerBL {
+  bottom: 6px;
+  left: 6px;
+  border-width: 0 0 2px 2px;
+}
+
+.cornerBR {
+  bottom: 6px;
+  right: 6px;
+  border-width: 0 2px 2px 0;
+}
+
+/* Pin icon circle */
+.venueIconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.15);
+  border: 1.5px solid #c9a84c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.venueName {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  color: #3b1f2b;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.venueAddress {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+  color: #7a6a5a;
+  letter-spacing: 0.08em;
+}
+
+/* Get Directions Button */
+.directionsBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #c9a84c, #b8912a, #d4b86a);
+  color: white;
+  border-radius: 50px;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.directionsBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* ── Map ── */
+.mapWrapper {
+  flex: 1.5;
+  width: 100%;
+  min-height: 300px;     /* ← mobile height */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1.5px solid #c9a84c;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 480px) {
+  .mapWrapper {
+    min-height: 350px;
+  }
+}
+
+@media (min-width: 768px) {
+  .mapWrapper {
+    min-height: 380px;
+  }
+}
+
+
+
+/* ── RSVP Section ── */
+.rsvpSection {
+  position: relative;
+  width: 100%;
+  padding: 60px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ECE8E5; 
+}
+
+.rsvpBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.rsvpContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Titles */
+.rsvpTitleWrapper {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.rsvpSubtitle {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  color: #b8912a;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.rsvpTitle {
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: #2f2119;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.rsvpDesc {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: #6b3fa0;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.7;
+  max-width: 420px;
+}
+
+.rsvpDeadline {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  color: #b8912a;
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+/* ── RSVP Card ── */
+.rsvpCard {
+  position: relative;
+  width: 100%;
+  background: rgba(255, 248, 240, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid #c9a84c;
+  border-radius: 12px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 480px) {
+  .rsvpCard {
+    padding: 40px 36px;
+  }
+}
+
+/* Field */
+.rsvpField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rsvpLabel {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  color: #2f2119;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Input */
+.rsvpInput {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e0d5c5;
+  border-radius: 8px;
+  background: white;
+  font-family: var(--font-cormorant), serif;
+  font-size: 1rem;
+  color: #2f2119;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.rsvpInput:focus {
+  border-color: #c9a84c;
+}
+
+.rsvpInput::placeholder {
+  color: #b0a090;
+}
+
+/* Textarea */
+.rsvpTextarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e0d5c5;
+  border-radius: 8px;
+  background: white;
+  font-family: var(--font-cormorant), serif;
+  font-size: 1rem;
+  color: #2f2119;
+  outline: none;
+  resize: none;
+  transition: border-color 0.2s;
+}
+
+.rsvpTextarea:focus {
+  border-color: #c9a84c;
+}
+
+.rsvpTextarea::placeholder {
+  color: #b0a090;
+}
+
+/* Attend buttons row */
+.rsvpAttendRow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rsvpAttendBtn {
+  flex: 1;
+  min-width: 140px;
+  padding: 12px 16px;
+  border: 1.5px solid #d0c5b5;
+  border-radius: 8px;
+  background: white;
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  color: #5c4a3a;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rsvpAttendBtn:hover {
+  border-color: #c9a84c;
+  color: #b8912a;
+}
+
+.rsvpAttendActive {
+  border-color: #c9a84c;
+  background: rgba(201, 168, 76, 0.1);
+  color: #b8912a;
+  font-weight: 600;
+}
+
+/* Guest counter */
+.rsvpGuestRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+
+.rsvpGuestBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #d0c5b5;
+  background: white;
+  font-size: 1.2rem;
+  color: #5c4a3a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.rsvpGuestBtn:hover {
+  border-color: #c9a84c;
+  color: #b8912a;
+}
+
+.rsvpGuestCount {
+  font-family: var(--font-cinzel), serif;
+  font-size: 1.4rem;
+  color: #2f2119;
+  font-weight: 600;
+  min-width: 32px;
+  text-align: center;
+}
+
+/* Error */
+.rsvpError {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.8rem;
+  color: #c0392b;
+  text-align: center;
+}
+
+/* Submit Button */
+.rsvpSubmitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #c9a84c, #b8912a, #d4b86a);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-top: 8px;
+}
+
+.rsvpSubmitBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Success Box */
+.rsvpSuccessBox {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 248, 240, 0.9);
+  border: 1.5px solid #c9a84c;
+  border-radius: 16px;
+  padding: 60px 40px;
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.rsvpSuccessIcon {
+  font-size: 3rem;
+}
+
+.rsvpSuccessTitle {
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: #2f2119;
+  font-weight: 700;
+}
+
+.rsvpSuccessText {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #5c4a3a;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+
+
+/* ── Footer Section ── */
+.footerSection {
+  width: 100%;
+  background: #F1E5CC;
+  padding: 48px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Top divider with calendar icon */
+.footerTopDivider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.footerDividerLine {
+  flex: 1;
+  height: 1px;
+  background: #c9a84c;
+  opacity: 0.5;
+}
+
+.footerCalendarIcon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #c9a84c;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Couple Names */
+.footerNames {
+  font-family: var(--font-great-vibes), cursive;
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: #2f2119;
+  font-weight: 400;
+  text-align: center;
+  margin-top: -4px;
+}
+
+/* Call Buttons Row */
+.footerCallRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.footerCallBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border: 1.5px solid #3b2a1a;
+  border-radius: 50px;
+  background: transparent;
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: #3b2a1a;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 0.05em;
+}
+
+.footerCallBtn:hover {
+  background: #3b2a1a;
+  color: white;
+}
+
+/* Thank You Text */
+.footerThankYou {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: #5c4a3a;
+  font-style: italic;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* Bottom divider */
+.footerBottomDivider {
+  width: 100%;
+  max-width: 600px;
+  height: 1px;
+  background: #c9a84c;
+  opacity: 0.4;
+  margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .footerCallRow {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footerCallBtn {
+    width: 200px;
+    justify-content: center;
+  }
 }

@@ -1,7 +1,6 @@
-import { Montserrat, Cookie, Cinzel_Decorative, Cormorant_Garamond, Corinthia} from "next/font/google";
+import { Montserrat, Cookie, Cinzel_Decorative, Cormorant_Garamond, Corinthia, Great_Vibes } from "next/font/google";
 import "../globals.css";
 import styles from "./wedding.module.css";
-
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -33,6 +32,12 @@ const corinthia = Corinthia({
   variable: "--font-corinthia",
 });
 
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-great-vibes",
+});
+
 export default function WeddingLayout({
   children,
 }: {
@@ -45,6 +50,7 @@ export default function WeddingLayout({
       ${cinzelDecorative.variable} 
       ${cormorantGaramond.variable} 
       ${corinthia.variable} 
+      ${greatVibes.variable}
       ${styles.weddingRoot}
     `}>
       {children}

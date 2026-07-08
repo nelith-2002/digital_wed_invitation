@@ -12,6 +12,7 @@ export default function WeddingStory() {
           alt=""
           fill
           style={{ objectFit: "cover" }}
+          loading="eager"
         />
       </div>
 
@@ -33,16 +34,18 @@ export default function WeddingStory() {
         {/* Floral Frame with Couple Image */}
         <div className={styles.storyFrameWrapper}>
 
-          {/* Gold Floral Frame */}
-          <div className={styles.storyFrame}>
-            <Image
-              src="/wedding/story-floral-frame-new.png"
-              alt="Floral frame"
-              width={420}
-              height={480}
-              style={{ objectFit: "contain", width: "100%", height: "auto" }}
-            />
-          </div>
+        <Image
+          src="/wedding/story-floral-frame-new.png"
+          alt="Floral frame"
+          width={420}
+          height={480}
+          loading="eager"
+          style={{ 
+            objectFit: "contain", 
+            width: "100%",    /* ← both width */
+            height: "auto"    /* ← and height */
+          }}
+        />
 
           {/* Couple Image — centered inside frame */}
           <div className={styles.storyCoupleImg}>

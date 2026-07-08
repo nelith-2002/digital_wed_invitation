@@ -131,8 +131,6 @@ export default function HomecomingDetails() {
   return (
     <section className={styles.detailsSection}>
       <div className={styles.detailsInner}>
-        {/* <p className={styles.detailsDate}>Saturday, September 05, 2026</p> */}
-
         <h2 className={styles.detailsTitle}>The Details</h2>
 
         <div className={styles.detailsArchRow}>

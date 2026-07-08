@@ -37,37 +37,62 @@ function formatNumber(value: number) {
   return String(value).padStart(2, "0");
 }
 
+function CountdownDigits({
+  value,
+  label,
+}: {
+  value: string;
+  label: string;
+}) {
+  return (
+    <span className={styles.countdownValue} aria-label={value}>
+      {value.split("").map((digit, index) => (
+        <span
+          key={`${label}-${index}-${digit}`}
+          className={styles.countdownDigit}
+          aria-hidden="true"
+        >
+          {digit}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export default function HomecomingCountdown() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft());
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setTimeLeft(getTimeLeft());
-    }, 1000);
+  const initialTimer = window.setTimeout(() => {
+    setTimeLeft(getTimeLeft());
+  }, 0);
 
-    return () => window.clearInterval(timer);
-  }, []);
+  const intervalTimer = window.setInterval(() => {
+    setTimeLeft(getTimeLeft());
+  }, 1000);
+
+  return () => {
+    window.clearTimeout(initialTimer);
+    window.clearInterval(intervalTimer);
+  };
+}, []);
 
   const countdownItems = [
     {
       label: "Days",
-      value: timeLeft.days,
-      displayValue: String(timeLeft.days),
+      displayValue: timeLeft ? String(timeLeft.days) : "00",
     },
     {
       label: "Hours",
-      value: timeLeft.hours,
-      displayValue: formatNumber(timeLeft.hours),
+      displayValue: timeLeft ? formatNumber(timeLeft.hours) : "00",
     },
     {
       label: "Minutes",
-      value: timeLeft.minutes,
-      displayValue: formatNumber(timeLeft.minutes),
+      displayValue: timeLeft ? formatNumber(timeLeft.minutes) : "00",
     },
     {
       label: "Seconds",
-      value: timeLeft.seconds,
-      displayValue: formatNumber(timeLeft.seconds),
+      displayValue: timeLeft ? formatNumber(timeLeft.seconds) : "00",
     },
   ];
 
@@ -92,12 +117,10 @@ export default function HomecomingCountdown() {
             <Fragment key={item.label}>
               <div className={styles.countdownItemWrap}>
                 <div className={styles.countdownBox}>
-                  <span
-                    key={`${item.label}-${item.value}`}
-                    className={styles.countdownValue}
-                  >
-                    {item.displayValue}
-                  </span>
+                  <CountdownDigits
+                    value={item.displayValue}
+                    label={item.label}
+                  />
                 </div>
 
                 <p className={styles.countdownLabel}>{item.label}</p>
@@ -115,10 +138,6 @@ export default function HomecomingCountdown() {
           <strong>◇</strong>
           <span />
         </div>
-
-        <p className={styles.countdownDateText}>
-          05 September 2026 · From 06.30 PM onwards
-        </p>
       </div>
     </section>
   );

@@ -43,8 +43,10 @@
   background-position: center;
   background-repeat: no-repeat;
   filter:
-    drop-shadow(0 8px 16px rgba(90, 8, 88, 0.16))
-    saturate(1.08);
+    drop-shadow(0 8px 16px rgba(90, 8, 88, 0.2))
+    saturate(1.35)
+    contrast(1.08)
+    brightness(1.04);
   animation: flowerFall var(--fall-duration) linear infinite;
   animation-delay: var(--fall-delay);
   will-change: transform, opacity;
@@ -59,32 +61,32 @@
       scale(0.82);
   }
 
-  8% {
-    opacity: calc(var(--fall-opacity) * 0.65);
+  7% {
+    opacity: calc(var(--fall-opacity) * 0.75);
   }
 
-  25% {
+  24% {
     opacity: var(--fall-opacity);
     transform:
       translate3d(calc(var(--fall-sway) * 0.45), 24vh, 0)
       rotate(calc(var(--fall-rotate) * 0.35))
-      scale(0.95);
+      scale(0.97);
   }
 
   55% {
-    opacity: calc(var(--fall-opacity) * 0.9);
+    opacity: calc(var(--fall-opacity) * 0.96);
     transform:
       translate3d(calc(var(--fall-sway) * -0.3), 58vh, 0)
       rotate(calc(var(--fall-rotate) * 0.65))
-      scale(0.9);
+      scale(0.92);
   }
 
   82% {
-    opacity: calc(var(--fall-opacity) * 0.7);
+    opacity: calc(var(--fall-opacity) * 0.78);
     transform:
       translate3d(calc(var(--fall-sway) * 0.35), 88vh, 0)
       rotate(calc(var(--fall-rotate) * 0.85))
-      scale(0.84);
+      scale(0.86);
   }
 
   100% {
@@ -92,7 +94,7 @@
     transform:
       translate3d(var(--fall-sway), 114vh, 0)
       rotate(var(--fall-rotate))
-      scale(0.76);
+      scale(0.78);
   }
 }
 
@@ -125,7 +127,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(1rem, 2vw, 2rem);
+  padding: clamp(0.75rem, 1.6vw, 1.4rem);
 }
 
 .heroInner {
@@ -133,20 +135,20 @@
   z-index: 3;
   width: 100%;
   max-width: 1080px;
-  min-height: calc(100svh - 4rem);
+  min-height: calc(100svh - 2.2rem);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.8rem, 1.4vw, 1.35rem);
+  gap: clamp(0.24rem, 0.58vw, 0.5rem);
   text-align: center;
 }
 
 .heroFlowerTopLeft {
   position: absolute;
-  top: clamp(-56px, -5vw, -14px);
-  left: clamp(-72px, -6vw, -20px);
-  width: clamp(250px, 31vw, 500px);
+  top: clamp(-44px, -4vw, -14px);
+  left: clamp(-58px, -4.8vw, -18px);
+  width: clamp(190px, 22vw, 360px);
   height: auto;
   z-index: 2;
   pointer-events: none;
@@ -154,28 +156,28 @@
 
 .heroFlowerBottomRight {
   position: absolute;
-  right: clamp(-82px, -7vw, -22px);
-  bottom: clamp(-64px, -5vw, -14px);
-  width: clamp(265px, 33vw, 540px);
+  right: clamp(-66px, -5.4vw, -20px);
+  bottom: clamp(-54px, -4.6vw, -14px);
+  width: clamp(210px, 24vw, 390px);
   height: auto;
   z-index: 2;
   pointer-events: none;
 }
 
 .heroTopText {
+  margin: 0;
   font-family: var(--font-cormorant);
   color: #9c2397;
-  font-size: clamp(0.8rem, 1.1vw, 1.05rem);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  line-height: 1.6;
+  font-size: clamp(0.72rem, 0.95vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  line-height: 1.55;
   text-transform: uppercase;
-  margin: 0;
 }
 
 .heroRingWrap {
   position: relative;
-  width: clamp(330px, 45vw, 540px);
+  width: clamp(335px, 35vw, 455px);
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
@@ -196,61 +198,73 @@
   z-index: 2;
   font-family: var(--font-cookie);
   color: #151018;
-  width: 68%;
-  max-width: 330px;
-  font-size: clamp(2.05rem, 3.7vw, 3.3rem);
-  line-height: 0.9;
+  width: 40%;
+  max-width: 175px;
+  font-size: clamp(1.9rem, 2.45vw, 2.6rem);
+  line-height: 0.84;
   text-align: center;
-  transform: translateY(-25%);
+  transform: translate(-4%, -26%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+.heroCoupleNames span {
+  white-space: nowrap;
+}
+
 .heroAmpersand {
-  margin: 0.05rem 0;
+  margin: 0.04rem 0 0.08rem;
   font-family: var(--font-cormorant);
-  font-size: clamp(1.85rem, 2.9vw, 2.75rem);
+  font-size: clamp(1.55rem, 2vw, 2.05rem);
   font-weight: 700;
   line-height: 0.9;
+  background: linear-gradient(90deg, transparent, #a97231, transparent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .heroInviteText {
-  max-width: 820px;
-  margin: clamp(-7.8rem, -9.8vw, -5.9rem) 0 0;
+  max-width: 760px;
+  margin: clamp(-5.8rem, -7vw, -4.2rem) 0 0;
   font-family: var(--font-cormorant);
   color: #2b202b;
-  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
-  line-height: 1.6;
+  font-size: clamp(1rem, 1.35vw, 1.28rem);
+  line-height: 1.45;
 }
 
 .heroMonth {
-  margin: 0.4rem 0 0;
+  margin: 0.2rem 0 0;
   font-family: var(--font-cormorant);
   color: #211621;
-  font-size: clamp(1.35rem, 2.1vw, 1.95rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.75rem);
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
 .heroDateGrid {
-  width: min(100%, 620px);
+  width: min(100%, 570px);
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(130px, 1fr) auto minmax(130px, 1fr);
   align-items: center;
-  gap: clamp(1rem, 2vw, 2rem);
+  gap: clamp(0.75rem, 1.4vw, 1.25rem);
 }
 
 .heroDateSide {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  align-items: center;
+  gap: 0.45rem;
 }
 
 .heroDateLine {
-  height: 5px;
+  height: 3px;
+  width: 100%;
+  max-width: 150px;
   border-radius: 999px;
   background: linear-gradient(90deg, transparent, #a97231, transparent);
 }
@@ -258,100 +272,120 @@
 .heroDateLabel {
   font-family: var(--font-cormorant);
   color: #171017;
-  font-size: clamp(1.05rem, 1.7vw, 1.45rem);
+  font-size: clamp(1rem, 1.35vw, 1.22rem);
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .heroDateNumber {
   font-family: var(--font-cormorant);
   color: #9c2397;
-  font-size: clamp(3.4rem, 6vw, 5rem);
+  font-size: clamp(3rem, 5vw, 4.3rem);
   font-weight: 700;
   line-height: 0.9;
+  transform: translateY(-0.95rem);
 }
 
 .heroYear {
-  margin: 0;
+  margin: 0.08rem 0 0;
+  margin-top: -0.45rem;
   font-family: var(--font-cormorant);
   color: #171017;
-  font-size: clamp(1.6rem, 2.4vw, 2.3rem);
-  font-weight: 600;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 700;
 }
 
 .heroVenue {
   margin: 0;
+  margin-top: -0.16rem;
   font-family: var(--font-cormorant);
   color: #3a2736;
-  font-size: clamp(1rem, 1.4vw, 1.25rem);
-  line-height: 1.4;
+  font-size: clamp(1rem, 1.3vw, 1.18rem);
+  line-height: 1.3;
 }
 
 /* =========================
    COUNTDOWN SECTION
-   Narrow section-only design
+   Elegant dark-purple section design
 ========================= */
 
 .countdownSection {
   position: relative;
   width: 100%;
+  min-height: clamp(360px, 42svh, 500px);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(3rem, 5vw, 4.8rem) 1.5rem;
-  background: transparent;
+   padding: clamp(3rem, 4.4vw, 5rem) 1.5rem;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 248, 252, 0.14), transparent 28%),
+    radial-gradient(circle at 82% 72%, rgba(183, 16, 185, 0.18), transparent 34%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px),
+    linear-gradient(
+      135deg,
+      #6f4a73 0%,
+      #7d5480 36%,
+      #8f6290 68%,
+      #9f6aa0 100%
+    );
+  background-size:
+    auto,
+    auto,
+    34px 34px,
+    auto;
+}
+
+.countdownSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 248, 252, 0.05),
+      transparent 30%,
+      transparent 70%,
+      rgba(255, 248, 252, 0.05)
+    ),
+    radial-gradient(circle at 50% 50%, rgba(169, 114, 49, 0.09), transparent 38%);
+  pointer-events: none;
 }
 
 .countdownDecorTop,
 .countdownDecorBottom {
   position: absolute;
-  width: clamp(180px, 25vw, 360px);
+  width: clamp(160px, 18vw, 320px);
   aspect-ratio: 1 / 1;
-  border-radius: 48% 52% 45% 55%;
-  opacity: 0.38;
+  border-radius: 999px;
   pointer-events: none;
-  filter: blur(0.4px);
+  opacity: 0.18;
+  filter: blur(18px);
 }
 
 .countdownDecorTop {
-  top: -100px;
-  right: -80px;
-  background:
-    radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.5), transparent 18%),
-    radial-gradient(circle at 60% 45%, rgba(158, 79, 174, 0.32), transparent 26%),
-    radial-gradient(circle at 40% 70%, rgba(237, 202, 241, 0.48), transparent 32%);
-  transform: rotate(22deg);
+  top: -110px;
+  right: -90px;
+  background: #ead5ec;
 }
 
 .countdownDecorBottom {
-  left: -100px;
-  bottom: -120px;
-  background:
-    radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.5), transparent 20%),
-    radial-gradient(circle at 62% 56%, rgba(143, 72, 158, 0.34), transparent 30%),
-    radial-gradient(circle at 35% 72%, rgba(236, 205, 239, 0.5), transparent 34%);
-  transform: rotate(-18deg);
+  left: -110px;
+  bottom: -130px;
+  background: #a97231;
 }
 
 .countdownPanel {
   position: relative;
   z-index: 3;
-  width: min(100%, 1050px);
+  width: min(100%, 980px);
   text-align: center;
-  padding: clamp(2.1rem, 3.6vw, 3.4rem) clamp(1rem, 4vw, 3.6rem);
-  border-radius: 34px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 248, 252, 0.26),
-      rgba(231, 199, 229, 0.2),
-      rgba(176, 121, 179, 0.14)
-    );
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow:
-    0 26px 70px rgba(70, 30, 74, 0.13),
-    inset 0 1px 0 rgba(255, 255, 255, 0.24);
-  backdrop-filter: blur(7px);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .countdownDivider,
@@ -360,50 +394,53 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  color: #9c2397;
+  color: #713f26;
 }
 
 .countdownDivider {
-  margin-bottom: clamp(1.1rem, 2vw, 1.6rem);
+   margin-bottom: clamp(1.25rem, 2vw, 1.9rem);
 }
 
 .countdownDividerBottom {
-  margin-top: clamp(1.7rem, 2.8vw, 2.4rem);
+   margin-top: clamp(1.45rem, 2.3vw, 2.1rem);
 }
 
 .countdownDivider span,
 .countdownDividerBottom span {
-  width: clamp(70px, 10vw, 130px);
+  width: clamp(72px, 9vw, 120px);
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(90, 8, 88, 0.62),
+    #713f26,
     transparent
   );
 }
 
 .countdownDivider strong,
 .countdownDividerBottom strong {
+  color: #713f26;
   font-size: 1rem;
-  color: #9c2397;
+  line-height: 1;
 }
 
 .countdownSmallText {
-  margin: 0 0 clamp(2rem, 3.5vw, 3.2rem);
+  margin: 0 0 clamp(1.6rem, 2.5vw, 2.35rem);
   font-family: var(--font-cormorant);
-  color: #8d157f;
-  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: #713f26;
+  font-size: clamp(0.78rem, 1vw, 0.95rem);
   font-weight: 700;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
 }
 
 .countdownGrid {
+  width: min(100%, 920px);
+  margin: 0 auto;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: clamp(1.1rem, 1.8vw, 1.7rem);
+  gap: clamp(0.75rem, 1.15vw, 1rem);
 }
 
 .countdownItemWrap {
@@ -413,8 +450,9 @@
 }
 
 .countdownBox {
-  width: clamp(100px, 9vw, 145px);
-  height: clamp(100px, 9vw, 145px);
+  position: relative;
+  width: clamp(116px, 9vw, 145px);
+  height: clamp(116px, 9vw, 145px);
   border-radius: 18px;
   display: flex;
   align-items: center;
@@ -424,59 +462,76 @@
   font-family: var(--font-cormorant);
   font-weight: 700;
   line-height: 1;
-  color: #5a0858;
 
   background:
     radial-gradient(circle at center, #fff9f5 0%, #e8ccf1 42%, #9257d9 100%);
-
+  border: 1.5px solid rgba(255, 248, 252, 0.4);
   box-shadow:
-    0 18px 35px rgba(87, 38, 116, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    0 22px 50px rgba(47, 20, 50, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.countdownBox::before,
+.countdownBox::after {
+  content: none;
 }
 
 .countdownValue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.015em;
+  min-width: 2ch;
+  color: #5a0858;
+  font-size: clamp(2.8rem, 4vw, 4.2rem);
+  font-style: italic;
+  line-height: 0.9;
+  letter-spacing: 0.03em;
+}
+
+.countdownDigit {
   display: inline-block;
-  font-size: clamp(3rem, 4.2vw, 4.7rem);
-  animation: countdownTick 0.35s ease;
+  min-width: 0.52em;
+  text-align: center;
+  animation: countdownDigitTick 0.34s ease;
 }
 
 .countdownLabel {
-  margin: 0.9rem 0 0;
+  margin: 0.82rem 0 0;
   font-family: var(--font-cormorant);
-  color: #2b202b;
-  font-size: clamp(1.15rem, 1.6vw, 1.65rem);
-  font-weight: 600;
+  color: #000000;
+  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
 
 .countdownColon {
-  height: clamp(100px, 9vw, 145px);
+  height: clamp(116px, 9vw, 145px);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #000000;
   font-family: var(--font-cormorant);
-  font-size: clamp(3.6rem, 5vw, 5.2rem);
+  font-size: clamp(3rem, 4.4vw, 5rem);
   font-weight: 700;
   line-height: 1;
+  opacity: 0.9;
+  transform: translateY(-0.08rem);
 }
 
 .countdownDateText {
-  margin: clamp(1.4rem, 2.4vw, 2rem) 0 0;
-  font-family: var(--font-cormorant);
-  color: #32142f;
-  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  display: none;
 }
 
-@keyframes countdownTick {
+@keyframes countdownDigitTick {
   0% {
-    transform: translateY(10px) scale(0.96);
-    opacity: 0.35;
+    transform: translateY(0.38rem);
+    opacity: 0.25;
   }
 
   100% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -489,43 +544,43 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding: clamp(4.5rem, 7vw, 7rem) 1.5rem;
+  padding: clamp(3.2rem, 5vw, 4.8rem) 1.5rem clamp(4.4rem, 6vw, 6rem);
   background: transparent;
 }
 
 .detailsInner {
   position: relative;
   z-index: 2;
-  width: min(100%, 1100px);
+  width: min(100%, 1060px);
   margin: 0 auto;
   text-align: center;
 }
 
 .detailsDate {
-  margin: 0 0 1.1rem;
+  margin: 0 0 1rem;
   font-family: var(--font-cormorant);
   color: #76513e;
-  font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
   font-weight: 700;
-  letter-spacing: 0.36em;
+  letter-spacing: 0.3em;
 }
 
 .detailsTitle {
-  margin: 0 0 clamp(3.2rem, 5vw, 4.7rem);
-  font-family: var(--font-cormorant);
+  margin: 0 0 clamp(2.6rem, 4vw, 3.8rem);
+  font-family: var(--font-cinzel-decorative);
   color: #050305;
-  font-size: clamp(2.1rem, 4vw, 3.2rem);
-  font-weight: 700;
-  line-height: 1;
+  font-size: clamp(1.4rem, 3.0vw, 2.12rem);
+  font-weight: 600;
+  line-height: 1.15;
   text-transform: uppercase;
 }
 
 .detailsArchRow {
   display: grid;
   grid-template-columns:
-    clamp(170px, 18vw, 230px)
-    clamp(180px, 20vw, 320px)
-    clamp(170px, 18vw, 230px);
+    clamp(150px, 16vw, 205px)
+    clamp(150px, 17vw, 260px)
+    clamp(150px, 16vw, 205px);
   column-gap: 0;
   align-items: start;
   justify-content: center;
@@ -539,78 +594,124 @@
 
 .detailsArch {
   position: relative;
-  width: clamp(170px, 18vw, 230px);
-  height: clamp(220px, 24vw, 310px);
-  border: 2px solid #b710b9;
-  border-bottom: 0;
-  border-radius: 999px 999px 0 0;
+  width: clamp(150px, 16vw, 205px);
+  height: clamp(185px, 19vw, 255px);
+  border: 1.6px solid rgba(169, 114, 49, 0.62);
+  border-bottom-color: rgba(169, 114, 49, 0.18);
+  border-radius: 999px 999px 22px 22px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: clamp(3.1rem, 5vw, 4.6rem);
+  padding-top: clamp(2.35rem, 4vw, 3.45rem);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 248, 252, 0.46), transparent 42%),
+    linear-gradient(
+      180deg,
+      rgba(255, 248, 252, 0.26),
+      rgba(231, 199, 229, 0.12)
+    );
+  box-shadow:
+    0 18px 48px rgba(90, 8, 88, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.detailsArch::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(183, 16, 185, 0.26);
+  border-bottom-color: rgba(183, 16, 185, 0.08);
+  border-radius: 999px 999px 18px 18px;
+  pointer-events: none;
 }
 
 .detailsConnector {
+  position: relative;
   width: 100%;
-  height: 2px;
-  margin-top: clamp(108px, 12vw, 156px);
-  background: #000000;
+  height: 1.5px;
+  margin-top: clamp(88px, 9.6vw, 118px);
   display: block;
+  background: linear-gradient(
+    90deg,
+    rgba(169, 114, 49, 0.16),
+    rgba(169, 114, 49, 0.7),
+    rgba(183, 16, 185, 0.34),
+    rgba(169, 114, 49, 0.7),
+    rgba(169, 114, 49, 0.16)
+  );
+}
+
+.detailsConnector::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid rgba(169, 114, 49, 0.82);
+  background: rgba(238, 230, 227, 0.96);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .detailsIconCircle {
-  width: clamp(76px, 7vw, 96px);
-  height: clamp(76px, 7vw, 96px);
-  border: 2px solid #b710b9;
+  position: relative;
+  z-index: 2;
+  width: clamp(64px, 5.8vw, 78px);
+  height: clamp(64px, 5.8vw, 78px);
+  border: 1.7px solid rgba(183, 16, 185, 0.55);
   border-radius: 999px;
-  background: rgba(255, 231, 249, 0.2);
+  background:
+    radial-gradient(circle at center, rgba(255, 248, 252, 0.6), rgba(231, 199, 229, 0.18));
   color: #7a573d;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow:
+    0 10px 28px rgba(90, 8, 88, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
 }
 
 .detailsSvgIcon {
-  width: clamp(40px, 4vw, 54px);
-  height: clamp(40px, 4vw, 54px);
+  width: clamp(34px, 3.4vw, 44px);
+  height: clamp(34px, 3.4vw, 44px);
   display: block;
 }
 
 .detailsText {
-  width: min(100%, 360px);
-  margin-top: clamp(3.2rem, 5vw, 4.4rem);
+  width: min(100%, 330px);
+  margin-top: clamp(1.45rem, 2.4vw, 2rem);
   text-align: center;
 }
 
 .detailsText h3 {
-  margin: 0 0 0.9rem;
+  margin: 0 0 0.7rem;
   font-family: var(--font-cormorant);
   color: #050305;
-  font-size: clamp(1.9rem, 2.9vw, 2.55rem);
-  font-weight: 500;
+  font-size: clamp(1.35rem, 2.1vw, 1.78rem);
+  font-weight: 700;
   line-height: 1.08;
 }
 
 .detailsText p {
-  margin: 0.2rem 0;
+  margin: 0.28rem 0;
   font-family: var(--font-cormorant);
-  color: #050305;
-  font-size: clamp(1.22rem, 1.9vw, 1.62rem);
-  font-weight: 700;
-  line-height: 1.18;
+  color: #211621;
+  font-size: clamp(1.02rem, 1.45vw, 1.22rem);
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 .detailsVenue {
-  margin-top: 0.85rem;
+  margin-top: 0.7rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.38rem;
   max-width: 100%;
   white-space: nowrap;
   font-family: var(--font-cookie);
   color: #76513e;
-  font-size: clamp(1.55rem, 2.15vw, 2.2rem);
+  font-size: clamp(1.25rem, 1.75vw, 1.75rem);
   font-weight: 400;
   line-height: 1;
 }
@@ -620,8 +721,8 @@
 }
 
 .detailsLocationIcon {
-  width: clamp(1rem, 1.25vw, 1.15rem);
-  height: clamp(1rem, 1.25vw, 1.15rem);
+  width: clamp(0.95rem, 1.15vw, 1.1rem);
+  height: clamp(0.95rem, 1.15vw, 1.1rem);
   color: #c98b16;
   flex-shrink: 0;
 }
@@ -629,31 +730,63 @@
 /* Details responsive */
 
 @media (max-width: 900px) {
+  .detailsSection {
+    padding-top: 3.4rem;
+  }
+
   .detailsArchRow {
     grid-template-columns:
-      minmax(150px, 190px)
-      minmax(80px, 140px)
-      minmax(150px, 190px);
+      minmax(145px, 180px)
+      minmax(90px, 150px)
+      minmax(145px, 180px);
   }
 
   .detailsArch {
-    width: 190px;
-    height: 250px;
+    width: 180px;
+    height: 230px;
+    padding-top: 2.9rem;
   }
 
   .detailsConnector {
-    margin-top: 124px;
+    margin-top: 108px;
+  }
+
+  .detailsIconCircle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .detailsSvgIcon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .detailsText h3 {
+    font-size: 1.38rem;
+  }
+
+  .detailsText p {
+    font-size: 1.02rem;
   }
 
   .detailsVenue {
-    font-size: 1.6rem;
+    font-size: 1.38rem;
   }
 }
 
 @media (max-width: 760px) {
+  .detailsSection {
+    padding: 3rem 1rem 4.5rem;
+  }
+
+  .detailsTitle {
+    font-size: clamp(1.7rem, 7vw, 2.4rem);
+    margin-bottom: 2.5rem;
+  }
+
   .detailsArchRow {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 3.3rem;
   }
 
   .detailsConnector {
@@ -661,12 +794,21 @@
   }
 
   .detailsArch {
-    width: 170px;
-    height: 230px;
+    width: 160px;
+    height: 210px;
+    padding-top: 2.65rem;
   }
 
   .detailsText {
-    margin-top: 2.7rem;
+    margin-top: 1.35rem;
+  }
+
+  .detailsText h3 {
+    font-size: 1.35rem;
+  }
+
+  .detailsText p {
+    font-size: 1rem;
   }
 
   .detailsDate {
@@ -679,11 +821,41 @@
     flex-wrap: wrap;
     justify-content: center;
     line-height: 1.1;
-    font-size: 1.5rem;
+    font-size: 1.32rem;
   }
 
   .detailsVenue span {
     white-space: normal;
+  }
+}
+
+@media (max-width: 420px) {
+  .detailsSection {
+    padding-top: 2.8rem;
+  }
+
+  .detailsTitle {
+    font-size: 2rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .detailsArch {
+    width: 150px;
+    height: 200px;
+  }
+
+  .detailsIconCircle {
+    width: 64px;
+    height: 64px;
+  }
+
+  .detailsSvgIcon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .detailsVenue {
+    font-size: 1.25rem;
   }
 }
 
@@ -694,46 +866,56 @@
 .storySection {
   position: relative;
   width: 100%;
+  min-height: 100svh;
   overflow: hidden;
-  padding: clamp(4.5rem, 7vw, 7rem) 1.5rem;
+  margin-top: clamp(-1.5rem, -2vw, -0.75rem);
+  padding: clamp(2.6rem, 4vw, 4rem) 1.5rem clamp(3rem, 4.5vw, 4.5rem);
   background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .storyInner {
   position: relative;
   z-index: 2;
-  width: min(100%, 1100px);
+  width: min(100%, 1060px);
   margin: 0 auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .storyTitle {
-  margin: 0 0 clamp(2.5rem, 4vw, 3.5rem);
+  margin: 0 0 clamp(1.35rem, 2.2vw, 2.1rem);
   font-family: var(--font-cinzel-decorative);
   color: #050305;
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  font-weight: 900;
-  line-height: 1.15;
+  font-size: clamp(1.4rem, 3.0vw, 2.12rem);
+  font-weight: 600;
+  line-height: 1.12;
   text-transform: uppercase;
 }
 
 .storyText {
-  max-width: 930px;
-  margin: 0 auto clamp(4rem, 6vw, 6rem);
+  max-width: 820px;
+  margin: 0 auto clamp(1.7rem, 2.6vw, 2.4rem);
   font-family: var(--font-corinthia);
   color: #050305;
-  font-size: clamp(2.2rem, 4vw, 4rem);
-  font-weight: 700;
-  line-height: 1.28;
+  font-size: clamp(1.85rem, 3.1vw, 3rem);
+  font-weight: 200;
+  line-height: 1.18;
   text-align: center;
 }
 
 .storyImageWrap {
-  width: min(100%, 520px);
+  width: min(100%, clamp(320px, 44svh, 470px));
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translateY(-1.2rem);
 }
 
 .storyImage {
@@ -745,36 +927,93 @@
 
 /* Story responsive */
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .storySection {
-    padding: 4rem 1rem;
+    min-height: 100svh;
+    margin-top: -1rem;
+    padding: 3rem 1rem 3.6rem;
   }
 
   .storyTitle {
-    font-size: clamp(1.7rem, 7vw, 2.4rem);
-    margin-bottom: 2rem;
+    font-size: clamp(1.75rem, 5.8vw, 2.55rem);
+    margin-bottom: 1.35rem;
   }
 
   .storyText {
-    max-width: 95%;
-    font-size: clamp(2rem, 8vw, 3rem);
-    line-height: 1.25;
-    margin-bottom: 3rem;
+    max-width: 92%;
+    font-size: clamp(1.85rem, 5vw, 2.65rem);
+    line-height: 1.18;
+    margin-bottom: 1.65rem;
   }
 
   .storyImageWrap {
-    width: min(100%, 390px);
+    width: min(100%, clamp(290px, 42svh, 400px));
+    transform: translateY(-1rem);
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 760px) {
+  .storySection {
+    min-height: 100svh;
+    margin-top: -0.8rem;
+    padding: 2.7rem 1rem 3.3rem;
+  }
+
+  .storyTitle {
+    font-size: clamp(1.55rem, 6.4vw, 2.25rem);
+    margin-bottom: 1.2rem;
+  }
+
   .storyText {
-    font-size: 2.15rem;
+    max-width: 94%;
+    font-size: clamp(1.65rem, 6.8vw, 2.35rem);
+    line-height: 1.16;
+    margin-bottom: 1.45rem;
   }
 
   .storyImageWrap {
-    width: min(100%, 330px);
+  width: min(100%, clamp(270px, 40svh, 360px));
+  transform: translateY(-0.8rem);
+}
+}
+
+@media (max-width: 420px) {
+  .storySection {
+    min-height: 100svh;
+    padding: 2.4rem 0.9rem 3rem;
   }
+
+  .storyTitle {
+    font-size: clamp(1.45rem, 6.8vw, 1.95rem);
+    margin-bottom: 1.05rem;
+  }
+
+  .storyText {
+    max-width: 96%;
+    font-size: clamp(1.55rem, 7.2vw, 2.05rem);
+    line-height: 1.14;
+    margin-bottom: 1.25rem;
+  }
+
+  .storyImageWrap {
+  width: min(100%, clamp(245px, 38svh, 325px));
+  transform: translateY(-0.65rem);
+}
+}
+
+@media (max-width: 360px) {
+  .storyTitle {
+    font-size: 1.38rem;
+  }
+
+  .storyText {
+    font-size: 1.45rem;
+  }
+
+  .storyImageWrap {
+  width: min(100%, 260px);
+  transform: translateY(-0.5rem);
+}
 }
 
 /* =========================
@@ -785,79 +1024,104 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding: clamp(4.5rem, 7vw, 7rem) 1.5rem;
+  margin-top: clamp(-1.4rem, -2vw, -0.6rem);
+  padding: clamp(2.8rem, 4.4vw, 4.4rem) 1.5rem clamp(4rem, 5.5vw, 5.6rem);
   background: transparent;
 }
 
 .locationCalendarInner {
   position: relative;
   z-index: 2;
-  width: min(100%, 1180px);
+  width: min(100%, 1120px);
   margin: 0 auto;
   text-align: center;
 }
 
 .locationEyebrow {
-  margin: 0 0 1rem;
+  margin: 0 0 clamp(1.2rem, 2vw, 1.8rem);
   font-family: var(--font-cinzel-decorative);
-  color: #5a0858;
-  font-size: clamp(2.1rem, 4vw, 3.4rem);
-  font-weight: 900;
-  line-height: 1;
+  color: #050305;
+  font-size: clamp(1.4rem, 3vw, 2.12rem);
+  font-weight: 600;
+  line-height: 1.12;
   text-transform: uppercase;
 }
 
 .locationTitle {
-  margin: 0;
-  font-family: var(--font-corinthia);
-  color: #050305;
-  font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 700;
-  line-height: 1;
+  display: none;
 }
 
 .locationAddress {
-  margin: 0.3rem auto clamp(3.5rem, 5vw, 5rem);
+  width: fit-content;
+  max-width: min(100%, 860px);
+  margin: 0 auto clamp(2.3rem, 3.6vw, 3.4rem);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.locationAddressMainRow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
+  gap: clamp(0.5rem, 0.9vw, 0.75rem);
   font-family: var(--font-corinthia);
   color: #050305;
-  font-size: clamp(2rem, 4vw, 3.6rem);
-  font-weight: 700;
+  font-size: clamp(1.85rem, 3vw, 2.75rem);
+  font-weight: 600;
   line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.locationAddressSub {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-corinthia);
+  color: #76513e;
+  font-size: clamp(1.15rem, 1.85vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .locationPinIcon {
-  width: clamp(1.4rem, 2vw, 2rem);
-  height: clamp(1.4rem, 2vw, 2rem);
+  width: clamp(1.1rem, 1.5vw, 1.45rem);
+  height: clamp(1.1rem, 1.5vw, 1.45rem);
   color: #c98b16;
   flex-shrink: 0;
 }
 
 .locationCalendarGrid {
   display: grid;
-  grid-template-columns: minmax(280px, 1.05fr) minmax(340px, 0.95fr);
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
+  grid-template-columns: minmax(300px, 1fr) minmax(330px, 0.92fr);
+  gap: clamp(1.8rem, 4vw, 3.4rem);
+  align-items: start;
 }
 
 .mapCard {
   position: relative;
   width: 100%;
-  min-height: clamp(260px, 27vw, 370px);
+  min-height: clamp(250px, 25vw, 330px);
   overflow: hidden;
-  border-radius: 28px;
-  border: 1px solid rgba(183, 16, 185, 0.28);
+  border-radius: 24px;
+  border: 1.5px solid rgba(118, 81, 62, 0.58);
   background: rgba(255, 248, 252, 0.3);
-  box-shadow: 0 26px 70px rgba(70, 30, 74, 0.13);
+  box-shadow:
+    0 22px 60px rgba(70, 30, 74, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .mapFrame {
   width: 100%;
   height: 100%;
-  min-height: clamp(260px, 27vw, 370px);
+  min-height: clamp(250px, 25vw, 330px);
   border: 0;
   display: block;
   filter: saturate(0.95) contrast(0.98);
@@ -865,17 +1129,17 @@
 
 .openMapButton {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 0.85rem;
+  left: 0.85rem;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.8rem 1rem;
+  padding: 0.65rem 0.9rem;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.94);
   color: #1951b8;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.86rem;
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 12px 30px rgba(20, 20, 20, 0.12);
@@ -885,67 +1149,77 @@
 
 .calendarCard {
   width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
   background: transparent;
+  align-self: start;
 }
 
 .calendarHeader {
   width: 100%;
-  min-height: clamp(108px, 8vw, 132px);
-  border: 3px solid #6b0f73;
+  min-height: clamp(86px, 7vw, 104px);
+  border: 2.2px solid #6b0f73;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
-  padding: clamp(1.2rem, 2vw, 1.7rem) clamp(1.4rem, 2.4vw, 2.2rem);
+  padding: clamp(0.9rem, 1.5vw, 1.15rem) clamp(1rem, 2vw, 1.55rem);
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: clamp(1.2rem, 2vw, 1.8rem);
+  gap: clamp(0.85rem, 1.6vw, 1.25rem);
   align-items: center;
   text-align: left;
   cursor: pointer;
-  box-shadow: 0 18px 45px rgba(70, 30, 74, 0.1);
+  box-shadow:
+    0 18px 45px rgba(70, 30, 74, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
 .calendarIconWrap {
-  width: clamp(72px, 6vw, 92px);
-  height: clamp(72px, 6vw, 92px);
+  width: clamp(58px, 5vw, 72px);
+  height: clamp(58px, 5vw, 72px);
   border-radius: 999px;
-  background: linear-gradient(135deg, #5f8bad, #315b76);
-  color: #f0d98e;
+  background:
+    radial-gradient(circle at center, rgba(255, 248, 252, 0.95), rgba(231, 199, 229, 0.58));
+  color: #76513e;
+  border: 1px solid rgba(118, 81, 62, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 30px rgba(49, 91, 118, 0.22);
+  box-shadow:
+    0 12px 30px rgba(70, 30, 74, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 
 .calendarMainIcon {
-  width: 48%;
-  height: 48%;
+  width: 46%;
+  height: 46%;
+  color: #76513e;
 }
 
 .calendarHeaderText {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.25rem;
 }
 
 .calendarHeaderText strong {
   font-family: var(--font-cormorant);
   color: #385062;
-  font-size: clamp(2.1rem, 3.4vw, 3.4rem);
-  font-weight: 500;
-  line-height: 1;
+  font-size: clamp(1.65rem, 2.6vw, 2.55rem);
+  font-weight: 600;
+  line-height: 0.96;
 }
 
 .calendarHeaderText small {
   font-family: var(--font-cormorant);
-  color: rgba(56, 80, 98, 0.58);
-  font-size: clamp(1.2rem, 1.8vw, 1.65rem);
+  color: #385062;
+  font-size: clamp(0.95rem, 1.45vw, 1.25rem);
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.05;
 }
 
 .calendarChevronWrap {
-  width: clamp(58px, 5vw, 74px);
-  height: clamp(58px, 5vw, 74px);
+  width: clamp(46px, 4.2vw, 58px);
+  height: clamp(46px, 4.2vw, 58px);
   border-radius: 999px;
   background: #f1f0f0;
   color: #385062;
@@ -967,25 +1241,25 @@
 /* Dropdown options */
 
 .calendarOptions {
-  width: calc(100% - clamp(2rem, 4vw, 4rem));
-  margin: 1rem auto 0;
+  width: calc(100% - clamp(1.5rem, 3vw, 3rem));
+  margin: 0.85rem auto 0;
   overflow: hidden;
-  border-radius: 26px;
-  border: 1.5px solid rgba(107, 15, 115, 0.35);
-  background: rgba(255, 255, 255, 0.9);
+  border-radius: 22px;
+  border: 1.5px solid rgba(107, 15, 115, 0.28);
+  background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 18px 45px rgba(70, 30, 74, 0.12);
 }
 
 .calendarOption {
   width: 100%;
-  min-height: 84px;
+  min-height: 66px;
   border: 0;
   border-bottom: 1px solid rgba(43, 32, 43, 0.08);
   background: transparent;
-  padding: 1rem 1.4rem;
+  padding: 0.75rem 1.05rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 1.2rem;
+  gap: 0.9rem;
   align-items: center;
   text-align: left;
   color: #2b202b;
@@ -1003,19 +1277,19 @@
 
 .calendarOption span {
   font-family: var(--font-cormorant);
-  font-size: clamp(1.55rem, 2.2vw, 2.05rem);
+  font-size: clamp(1.1rem, 1.7vw, 1.45rem);
   font-weight: 500;
 }
 
 .calendarOption strong {
   color: rgba(43, 32, 43, 0.45);
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 400;
 }
 
 .calendarProviderIcon {
-  width: clamp(42px, 4vw, 56px);
-  height: clamp(42px, 4vw, 56px);
+  width: clamp(34px, 3.4vw, 44px);
+  height: clamp(34px, 3.4vw, 44px);
   display: block;
   flex-shrink: 0;
 }
@@ -1023,100 +1297,137 @@
 /* Location responsive */
 
 @media (max-width: 900px) {
+  .locationCalendarSection {
+    margin-top: -1rem;
+    padding: 3rem 1rem 4.4rem;
+  }
+
   .locationCalendarGrid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .mapCard {
+    max-width: 720px;
+    margin: 0 auto;
   }
 
   .calendarCard {
-    max-width: 760px;
-    margin: 0 auto;
+    max-width: 600px;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 620px) {
   .locationCalendarSection {
-    padding: 4rem 1rem;
+    margin-top: -0.7rem;
+    padding: 2.8rem 1rem 4rem;
+  }
+
+  .locationEyebrow {
+    margin-bottom: 1.1rem;
+    font-size: clamp(1.55rem, 6.4vw, 2.05rem);
   }
 
   .locationAddress {
-    flex-direction: column;
-    line-height: 1.1;
+    max-width: 100%;
+    margin-bottom: 2rem;
+    padding: 0.8rem 1rem;
+    font-size: clamp(1.45rem, 7vw, 2.1rem);
+    white-space: normal;
+    line-height: 1.05;
+    border-radius: 28px;
+  }
+
+  .locationAddress span {
+    white-space: normal;
+  }
+
+  .locationCalendarGrid {
+    gap: 1.8rem;
+  }
+
+  .mapCard {
+    min-height: 260px;
+    border-radius: 22px;
+  }
+
+  .mapFrame {
+    min-height: 260px;
   }
 
   .calendarHeader {
-    min-height: 96px;
+    min-height: 82px;
     border-width: 2px;
-    gap: 0.8rem;
-    padding: 1rem;
+    gap: 0.75rem;
+    padding: 0.85rem 0.9rem;
   }
 
   .calendarIconWrap {
-    width: 58px;
-    height: 58px;
+    width: 54px;
+    height: 54px;
   }
 
   .calendarHeaderText strong {
-    font-size: 1.65rem;
+    font-size: 1.45rem;
   }
 
   .calendarHeaderText small {
-    font-size: 1rem;
+    font-size: 0.92rem;
   }
 
   .calendarChevronWrap {
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
   }
 
   .calendarOptions {
-    width: calc(100% - 1.5rem);
+    width: calc(100% - 1rem);
+    border-radius: 20px;
   }
 
   .calendarOption {
-    min-height: 76px;
-    gap: 0.8rem;
-    padding: 0.9rem 1rem;
+    min-height: 62px;
+    gap: 0.7rem;
+    padding: 0.7rem 0.9rem;
   }
 
   .calendarOption span {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+  }
+
+  .calendarProviderIcon {
+    width: 34px;
+    height: 34px;
   }
 }
 
-/* Location responsive */
-
-@media (max-width: 900px) {
-  .locationCalendarGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .calendarCard {
-    max-width: 680px;
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 520px) {
-  .locationCalendarSection {
-    padding: 4rem 1rem;
-  }
-
+@media (max-width: 390px) {
   .locationAddress {
-    flex-direction: column;
-    line-height: 1.1;
-  }
-
-  .calendarHeader {
-    grid-template-columns: auto 1fr auto;
-    gap: 0.8rem;
-  }
-
-  .calendarOption {
-    gap: 0.8rem;
-  }
-
-  .calendarOption span {
     font-size: 1.35rem;
+  }
+
+  .mapCard,
+  .mapFrame {
+    min-height: 240px;
+  }
+
+  .calendarHeaderText strong {
+    font-size: 1.35rem;
+  }
+
+  .calendarHeaderText small {
+    font-size: 0.86rem;
+  }
+
+  .calendarIconWrap {
+    width: 50px;
+    height: 50px;
+  }
+
+  .calendarChevronWrap {
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -1127,136 +1438,174 @@
 .rsvpSection {
   position: relative;
   width: 100%;
+  min-height: 100svh;
   overflow: hidden;
-  padding: clamp(4.5rem, 7vw, 7rem) 1.5rem;
-  background: transparent;
+  margin-top: clamp(-1.6rem, -2.2vw, -0.8rem);
+  padding: clamp(2.8rem, 4.2vw, 4.2rem) 1.5rem clamp(3.2rem, 4.8vw, 4.8rem);
+  background:
+    radial-gradient(circle at 50% 8%, rgba(255, 248, 252, 0.24), transparent 34%),
+    radial-gradient(circle at 12% 82%, rgba(183, 16, 185, 0.1), transparent 30%),
+    linear-gradient(
+      180deg,
+      rgba(238, 230, 227, 0.08),
+      rgba(159, 106, 160, 0.18)
+    );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .rsvpIntro {
-  width: min(100%, 760px);
-  margin: 0 auto clamp(3.5rem, 5vw, 5rem);
+  width: min(100%, 700px);
+  margin: 0 auto clamp(1.8rem, 2.8vw, 2.6rem);
   text-align: center;
 }
 
 .rsvpIntro h2 {
-  margin: 0 0 1.4rem;
+  margin: 0 0 clamp(0.85rem, 1.4vw, 1.2rem);
   font-family: var(--font-cinzel-decorative);
-  color: #5a0858;
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
-  font-weight: 900;
-  line-height: 1;
+  color: #050305;
+  font-size: clamp(1.4rem, 3vw, 2.12rem);
+  font-weight: 600;
+  line-height: 1.12;
   text-transform: uppercase;
 }
 
 .rsvpIntro p {
-  margin: 0 auto 1.5rem;
-  max-width: 620px;
+  margin: 0 auto clamp(1rem, 1.6vw, 1.35rem);
+  max-width: 560px;
   font-family: var(--font-cormorant);
   color: #5a0858;
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
-  font-weight: 600;
-  line-height: 1.35;
+  font-size: clamp(1rem, 1.55vw, 1.28rem);
+  font-weight: 500;
+  line-height: 1.32;
 }
 
 .rsvpIntro span {
   display: block;
   font-family: var(--font-cormorant);
-  color: #b87535;
-  font-size: clamp(1rem, 1.5vw, 1.35rem);
-  font-weight: 700;
+  color: #76513e;
+  font-size: clamp(0.88rem, 1.2vw, 0.99rem);
+  font-weight: 900;
   letter-spacing: 0.28em;
+  line-height: 1.45;
 }
 
 .rsvpFormCard {
   position: relative;
-  width: min(100%, 760px);
+  width: min(100%, 680px);
   margin: 0 auto;
-  padding: clamp(2rem, 4vw, 3.2rem);
-  border: 3px solid #8f168f;
-  border-radius: 34px;
-  background: rgba(255, 246, 238, 0.62);
+  padding: clamp(1.35rem, 2.8vw, 2.25rem);
+  border: 1.6px solid rgba(118, 81, 62, 0.48);
+  border-radius: 28px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 248, 252, 0.44),
+      rgba(231, 199, 229, 0.22)
+    );
   box-shadow:
-    0 0 0 1px rgba(230, 108, 230, 0.35),
-    0 28px 80px rgba(70, 30, 74, 0.12);
+    0 22px 60px rgba(70, 30, 74, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
 }
 
 .rsvpFormCard::before {
   content: "";
   position: absolute;
-  inset: -12px;
-  border: 1.5px solid rgba(231, 99, 231, 0.45);
-  border-radius: 42px;
+  inset: -8px;
+  border: 1px solid rgba(183, 16, 185, 0.18);
+  border-radius: 34px;
   pointer-events: none;
 }
 
 .rsvpFieldGroup {
   position: relative;
   z-index: 2;
-  margin-bottom: 1.7rem;
+  margin-bottom: clamp(0.95rem, 1.6vw, 1.25rem);
   text-align: left;
 }
 
 .rsvpFieldGroup label {
   display: block;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.55rem;
   font-family: var(--font-cormorant);
-  color: #b87535;
-  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  color: #76513e;
+  font-size: clamp(0.78rem, 0.95vw, 0.92rem);
   font-weight: 700;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
 }
 
-.rsvpFieldGroup input {
+.rsvpFieldGroup input,
+.rsvpMessageInput {
   width: 100%;
-  height: 58px;
-  border: 1.5px solid #b85cff;
-  border-radius: 10px;
-  background: rgba(230, 203, 232, 0.6);
-  padding: 0 1rem;
+  border: 1.4px solid rgba(183, 16, 185, 0.45);
+  border-radius: 12px;
+  background: rgba(255, 248, 252, 0.34);
+  padding: 0 0.9rem;
   outline: none;
   font-family: var(--font-cormorant);
   color: #2b202b;
-  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
   transition:
     border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
-.rsvpFieldGroup input::placeholder {
-  color: rgba(43, 32, 43, 0.48);
+.rsvpFieldGroup input {
+  height: 48px;
 }
 
-.rsvpFieldGroup input:focus {
-  border-color: #8f168f;
-  box-shadow: 0 0 0 4px rgba(143, 22, 143, 0.12);
+.rsvpMessageInput {
+  min-height: 82px;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  resize: vertical;
+  line-height: 1.25;
+}
+
+.rsvpFieldGroup input::placeholder,
+.rsvpMessageInput::placeholder {
+  color: rgba(43, 32, 43, 0.46);
+}
+
+.rsvpFieldGroup input:focus,
+.rsvpMessageInput:focus {
+  border-color: rgba(118, 81, 62, 0.78);
+  background: rgba(255, 248, 252, 0.52);
+  box-shadow: 0 0 0 4px rgba(118, 81, 62, 0.1);
 }
 
 .rsvpChoiceGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.9rem, 2vw, 1.5rem);
+  gap: clamp(0.75rem, 1.4vw, 1rem);
 }
 
 .rsvpChoiceButton {
-  height: 58px;
-  border: 1.5px solid #b85cff;
-  border-radius: 10px;
-  background: rgba(219, 185, 225, 0.68);
+  height: 48px;
+  border: 1.4px solid rgba(183, 16, 185, 0.48);
+  border-radius: 12px;
+  background: rgba(255, 248, 252, 0.28);
   color: #2b202b;
   font-family: var(--font-cormorant);
-  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-size: clamp(0.98rem, 1.35vw, 1.14rem);
   font-weight: 700;
   cursor: pointer;
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
-    transform 0.2s ease;
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .rsvpChoiceButton:hover {
   transform: translateY(-1px);
-  border-color: #8f168f;
+  border-color: rgba(118, 81, 62, 0.72);
+  box-shadow: 0 10px 24px rgba(70, 30, 74, 0.08);
 }
 
 .rsvpChoiceActive {
@@ -1266,35 +1615,40 @@
 }
 
 .rsvpGuestCounter {
-  width: 100%;
-  height: 64px;
-  border: 1.5px solid #b85cff;
-  border-radius: 10px;
-  background: rgba(230, 203, 232, 0.6);
-  padding: 0 0.9rem;
+  width: min(100%, 360px);
+  height: 52px;
+  margin: 0 auto;
+  border: 1.4px solid rgba(183, 16, 185, 0.48);
+  border-radius: 999px;
+  background: rgba(255, 248, 252, 0.3);
+  padding: 0 0.42rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
 }
 
 .rsvpGuestCounter button {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   border: 0;
   border-radius: 999px;
   background: #6a0d67;
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 2rem;
+  font-size: 1.55rem;
+  font-weight: 700;
   line-height: 1;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .rsvpGuestCounter span {
   text-align: center;
   font-family: var(--font-cormorant);
   color: #151018;
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
   font-weight: 700;
 }
 
@@ -1302,44 +1656,46 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  height: 64px;
-  margin-top: 1rem;
+  height: 52px;
+  margin-top: 0.4rem;
   border: 0;
-  border-radius: 10px;
-  background: #5f0b5d;
+  border-radius: 12px;
+  background: #6a0d67;
   color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   font-family: var(--font-cormorant);
-  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  font-size: clamp(1rem, 1.35vw, 1.16rem);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
   transition:
     transform 0.2s ease,
-    background 0.2s ease;
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .rsvpSubmitButton:hover {
-  background: #4e084c;
+  background: #5a0858;
   transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(90, 8, 88, 0.16);
 }
 
 .rsvpButtonIcon {
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .rsvpError {
   position: relative;
   z-index: 2;
-  margin: -0.2rem 0 1rem;
+  margin: -0.1rem 0 0.8rem;
   font-family: var(--font-cormorant);
   color: #b00020;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 700;
   text-align: center;
 }
@@ -1350,22 +1706,21 @@
 
 .rsvpSuccessCard {
   position: relative;
-  width: min(100%, 920px);
+  width: min(100%, 680px);
   margin: 0 auto;
-  min-height: clamp(360px, 34vw, 500px);
-  border: 3px solid #b710b9;
-  border-radius: clamp(30px, 4vw, 46px);
+  min-height: clamp(270px, 28vw, 380px);
+  border: 1.6px solid rgba(118, 81, 62, 0.48);
+  border-radius: 30px;
   background:
     linear-gradient(
       135deg,
-      rgba(255, 248, 252, 0.82),
-      rgba(238, 216, 240, 0.74),
-      rgba(213, 171, 216, 0.58)
+      rgba(255, 248, 252, 0.48),
+      rgba(231, 199, 229, 0.24)
     );
   box-shadow:
-    0 30px 90px rgba(95, 11, 93, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
-  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+    0 22px 60px rgba(70, 30, 74, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  padding: clamp(2rem, 4vw, 3.2rem) clamp(1.4rem, 4vw, 2.8rem);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -1376,19 +1731,19 @@
 .rsvpSuccessCard::before {
   content: "";
   position: absolute;
-  inset: 12px;
-  border: 1.5px solid rgba(183, 16, 185, 0.32);
-  border-radius: clamp(22px, 3.5vw, 36px);
+  inset: 10px;
+  border: 1px solid rgba(183, 16, 185, 0.18);
+  border-radius: 24px;
   pointer-events: none;
 }
 
 .rsvpSuccessIcon {
   position: relative;
   z-index: 2;
-  width: clamp(74px, 8vw, 110px);
-  height: clamp(74px, 8vw, 110px);
+  width: clamp(56px, 6vw, 82px);
+  height: clamp(56px, 6vw, 82px);
   color: #a97231;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(1.2rem, 2.4vw, 2rem);
   filter: drop-shadow(0 10px 22px rgba(169, 114, 49, 0.25));
   animation: rsvpHeartBlink 1.8s ease-in-out infinite;
 }
@@ -1396,21 +1751,22 @@
 .rsvpSuccessCard h2 {
   position: relative;
   z-index: 2;
-  margin: 0 0 clamp(1.4rem, 2.6vw, 2.2rem);
-  font-family: var(--font-cormorant);
-  color: #5a0858;
-  font-size: clamp(3rem, 5vw, 5.2rem);
-  font-weight: 700;
-  line-height: 1;
+  margin: 0 0 clamp(0.85rem, 1.8vw, 1.4rem);
+  font-family: var(--font-cinzel-decorative);
+  color: #050305;
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
 .rsvpSuccessMain {
   position: relative;
   z-index: 2;
-  margin: 0 0 clamp(1.2rem, 2vw, 1.8rem);
+  margin: 0 0 clamp(0.75rem, 1.4vw, 1.1rem);
   font-family: var(--font-cormorant);
   color: #2b202b;
-  font-size: clamp(1.7rem, 2.8vw, 2.8rem);
+  font-size: clamp(1.18rem, 2vw, 1.6rem);
   font-weight: 600;
   line-height: 1.25;
 }
@@ -1418,11 +1774,11 @@
 .rsvpSuccessSub {
   position: relative;
   z-index: 2;
-  max-width: 720px;
+  max-width: 560px;
   margin: 0;
   font-family: var(--font-cormorant);
-  color: rgba(43, 32, 43, 0.68);
-  font-size: clamp(1.25rem, 2vw, 1.85rem);
+  color: rgba(43, 32, 43, 0.72);
+  font-size: clamp(1rem, 1.55vw, 1.25rem);
   line-height: 1.35;
 }
 
@@ -1471,41 +1827,154 @@
 
 /* RSVP responsive */
 
-@media (max-width: 620px) {
-  .rsvpFormCard {
-    padding: 2rem 1.2rem;
+@media (max-width: 900px) {
+  .rsvpSection {
+    min-height: 100svh;
+    margin-top: -1rem;
+    padding: 3rem 1rem 3.8rem;
   }
 
-  .rsvpChoiceGrid {
-    grid-template-columns: 1fr;
+  .rsvpFormCard {
+    width: min(100%, 660px);
+  }
+}
+
+@media (max-width: 620px) {
+  .rsvpSection {
+    min-height: 100svh;
+    margin-top: -0.7rem;
+    padding: 2.6rem 1rem 3.2rem;
+  }
+
+  .rsvpIntro {
+    margin-bottom: 1.5rem;
+  }
+
+  .rsvpIntro h2 {
+    font-size: clamp(1.55rem, 7vw, 2.05rem);
+  }
+
+  .rsvpIntro p {
+    font-size: 1rem;
+    line-height: 1.28;
   }
 
   .rsvpIntro span {
-    letter-spacing: 0.16em;
-    line-height: 1.6;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
   }
 
-  .rsvpSuccessCard {
-    min-height: 420px;
-    border-radius: 32px;
-    padding: 3.5rem 1.4rem;
-  }
-
-  .rsvpSuccessCard::before {
-    inset: 9px;
+  .rsvpFormCard {
+    padding: 1.25rem;
     border-radius: 24px;
   }
 
+  .rsvpFormCard::before {
+    inset: -6px;
+    border-radius: 29px;
+  }
+
+  .rsvpFieldGroup {
+    margin-bottom: 0.9rem;
+  }
+
+  .rsvpFieldGroup label {
+    font-size: 0.76rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.45rem;
+  }
+
+  .rsvpFieldGroup input {
+    height: 44px;
+  }
+
+  .rsvpMessageInput {
+    min-height: 70px;
+  }
+
+  .rsvpChoiceGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .rsvpChoiceButton {
+    height: 44px;
+    font-size: 0.95rem;
+  }
+
+  .rsvpGuestCounter {
+    width: min(100%, 290px);
+    height: 48px;
+  }
+
+  .rsvpGuestCounter button {
+    width: 33px;
+    height: 33px;
+    font-size: 1.35rem;
+  }
+
+  .rsvpSubmitButton {
+    height: 48px;
+    font-size: 0.94rem;
+    letter-spacing: 0.1em;
+  }
+
+  .rsvpSuccessCard {
+    min-height: 300px;
+    border-radius: 26px;
+    padding: 2.6rem 1.25rem;
+  }
+
+  .rsvpSuccessCard::before {
+    inset: 8px;
+    border-radius: 20px;
+  }
+
   .rsvpSuccessCard h2 {
-    font-size: 3rem;
+    font-size: 1.75rem;
   }
 
   .rsvpSuccessMain {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
   }
 
   .rsvpSuccessSub {
-    font-size: 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .rsvpSection {
+    padding: 2.3rem 0.8rem 3rem;
+  }
+
+  .rsvpIntro h2 {
+    font-size: 1.62rem;
+  }
+
+  .rsvpIntro p {
+    font-size: 0.94rem;
+  }
+
+  .rsvpIntro span {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+
+  .rsvpFormCard {
+    padding: 1.05rem;
+  }
+
+  .rsvpChoiceButton {
+    font-size: 0.86rem;
+  }
+
+  .rsvpGuestCounter {
+    width: 250px;
+  }
+
+  .rsvpMessageInput {
+    min-height: 66px;
   }
 }
 
@@ -1517,22 +1986,22 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding: clamp(3.5rem, 6vw, 5.5rem) 1.5rem;
+  padding: clamp(2.6rem, 4vw, 3.8rem) 1.5rem clamp(2.8rem, 4.2vw, 4rem);
   background:
     linear-gradient(
       180deg,
-      rgba(255, 248, 252, 0.34),
-      rgba(221, 184, 224, 0.38)
+      rgba(255, 248, 252, 0.2),
+      rgba(221, 184, 224, 0.24)
     );
 }
 
 .footerInner {
-  width: min(100%, 1180px);
+  width: min(100%, 1080px);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
+  gap: clamp(1.8rem, 4vw, 3.8rem);
   text-align: center;
 }
 
@@ -1544,20 +2013,20 @@
 }
 
 .footerEyebrow {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.45rem;
   font-family: var(--font-cormorant);
   color: #a97231;
-  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  font-size: clamp(0.82rem, 1vw, 0.95rem);
   font-weight: 700;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
 }
 
 .footerNames {
-  margin: 0 0 0.7rem;
+  margin: 0 0 0.55rem;
   font-family: var(--font-cookie);
   color: #2b202b;
-  font-size: clamp(3.2rem, 5.5vw, 5.4rem);
+  font-size: clamp(2.55rem, 4.4vw, 4.1rem);
   font-weight: 400;
   line-height: 0.95;
 }
@@ -1565,36 +2034,36 @@
 .footerMeta {
   margin: 0;
   font-family: var(--font-cormorant);
-  color: #7a573d;
-  font-size: clamp(1rem, 1.45vw, 1.25rem);
+  color: #76513e;
+  font-size: clamp(0.9rem, 1.2vw, 1.08rem);
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .footerButtons {
-  margin-top: clamp(1.5rem, 2.5vw, 2rem);
+  margin-top: clamp(1.15rem, 2vw, 1.55rem);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.85rem;
   flex-wrap: wrap;
 }
 
 .footerCallButton {
-  min-width: 150px;
-  min-height: 46px;
-  padding: 0.75rem 1.2rem;
-  border: 1.5px solid rgba(169, 114, 49, 0.7);
+  min-width: 138px;
+  min-height: 42px;
+  padding: 0.65rem 1.05rem;
+  border: 1.4px solid rgba(169, 114, 49, 0.68);
   border-radius: 999px;
-  background: rgba(255, 248, 252, 0.34);
-  color: #7a573d;
+  background: rgba(255, 248, 252, 0.28);
+  color: #76513e;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
   text-decoration: none;
   font-family: var(--font-cormorant);
-  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
   font-weight: 700;
   transition:
     background 0.2s ease,
@@ -1605,106 +2074,283 @@
 
 .footerCallButton:hover {
   transform: translateY(-1px);
-  background: rgba(255, 248, 252, 0.62);
+  background: rgba(255, 248, 252, 0.55);
   border-color: #a97231;
   color: #5a0858;
 }
 
 .footerPhoneIcon {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1rem;
+  height: 1rem;
   flex-shrink: 0;
 }
 
 .footerDivider {
-  width: 1px;
-  height: clamp(110px, 12vw, 160px);
+  width: 1.5px;
+  height: clamp(105px, 11vw, 145px);
   background: linear-gradient(
     180deg,
     transparent,
-    rgba(169, 114, 49, 0.45),
+    rgba(118, 81, 62, 0.72),
+    rgba(169, 114, 49, 0.62),
+    rgba(118, 81, 62, 0.72),
     transparent
   );
 }
 
 .footerRight h3 {
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.65rem;
   font-family: var(--font-cormorant);
   color: #2b202b;
-  font-size: clamp(2.3rem, 4vw, 4rem);
+  font-size: clamp(1.85rem, 3vw, 3rem);
   font-weight: 500;
   line-height: 1;
 }
 
 .footerRight p {
-  margin: 0 0 1.2rem;
+  margin: 0 0 0.85rem;
   font-family: var(--font-cormorant);
-  color: #7a573d;
-  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  color: #76513e;
+  font-size: clamp(0.98rem, 1.35vw, 1.15rem);
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .footerHeartIcon {
-  width: clamp(1.5rem, 2.2vw, 2rem);
-  height: clamp(1.5rem, 2.2vw, 2rem);
+  width: clamp(1.35rem, 1.8vw, 1.7rem);
+  height: clamp(1.35rem, 1.8vw, 1.7rem);
   color: #a97231;
-  filter: drop-shadow(0 8px 16px rgba(169, 114, 49, 0.22));
-  animation: footerHeartPulse 1.9s ease-in-out infinite;
-}
-
-@keyframes footerHeartPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.78;
-  }
-
-  40% {
-    transform: scale(1.12);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 0.78;
-  }
+  filter: drop-shadow(0 8px 16px rgba(169, 114, 49, 0.18));
+  animation: none;
 }
 
 /* Footer responsive */
 
 @media (max-width: 760px) {
+  .footerSection {
+    padding: 2.7rem 1rem 3.2rem;
+  }
+
   .footerInner {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 
   .footerDivider {
-    width: min(100%, 260px);
+    width: min(100%, 230px);
     height: 1px;
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(169, 114, 49, 0.45),
+      rgba(169, 114, 49, 0.38),
       transparent
     );
   }
 
   .footerNames {
-    font-size: clamp(3rem, 13vw, 4.3rem);
+    font-size: clamp(2.7rem, 12vw, 3.8rem);
+  }
+
+  .footerMeta {
+    max-width: 90%;
+    font-size: 0.95rem;
   }
 
   .footerButtons {
+    margin-top: 1.2rem;
     flex-direction: column;
     width: 100%;
+    gap: 0.75rem;
   }
 
   .footerCallButton {
-    width: min(100%, 240px);
+    width: min(100%, 220px);
+    min-height: 40px;
+  }
+
+  .footerRight h3 {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+  }
+
+  .footerRight p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .footerSection {
+    padding: 2.4rem 0.9rem 3rem;
+  }
+
+  .footerNames {
+    font-size: 2.75rem;
+  }
+
+  .footerMeta {
+    font-size: 0.9rem;
+  }
+
+  .footerCallButton {
+    min-height: 38px;
+    font-size: 0.92rem;
+  }
+
+  .footerRight h3 {
+    font-size: 2rem;
+  }
+}
+
+/* =========================
+   MUSIC PLAYER BUTTON
+========================= */
+
+.musicToggleButton {
+  position: fixed;
+  top: clamp(1rem, 1.8vw, 1.45rem);
+  right: clamp(1rem, 1.8vw, 1.45rem);
+  z-index: 80;
+  width: clamp(46px, 3.8vw, 56px);
+  height: clamp(46px, 3.8vw, 56px);
+  border-radius: 999px;
+  border: 1.6px solid rgba(169, 114, 49, 0.78);
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 248, 252, 0.22), transparent 35%),
+    linear-gradient(135deg, #5a0858, #76513e);
+  color: #f2d7a5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12rem;
+  cursor: pointer;
+  box-shadow:
+    0 14px 34px rgba(43, 12, 45, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.musicToggleButton:hover {
+  transform: translateY(-2px);
+  border-color: rgba(242, 215, 165, 0.92);
+  box-shadow:
+    0 18px 40px rgba(43, 12, 45, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.musicToggleButton:focus-visible {
+  outline: 3px solid rgba(242, 215, 165, 0.55);
+  outline-offset: 4px;
+}
+
+.musicToggleActive {
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 248, 252, 0.24), transparent 35%),
+    linear-gradient(135deg, #5a0858, #76513e);
+}
+
+.musicToggleMuted {
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 248, 252, 0.18), transparent 35%),
+    linear-gradient(135deg, #3a2736, #76513e);
+}
+
+.musicSpeakerIcon {
+  width: 1.22rem;
+  height: 1.22rem;
+  flex-shrink: 0;
+}
+
+.musicEqualizer {
+  width: 0.66rem;
+  height: 0.95rem;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.11rem;
+}
+
+.musicEqualizer span {
+  width: 0.13rem;
+  height: 0.36rem;
+  border-radius: 999px;
+  background: #f2d7a5;
+  animation: musicEqualizerMove 0.9s ease-in-out infinite;
+}
+
+.musicEqualizer span:nth-child(2) {
+  height: 0.7rem;
+  animation-delay: 0.15s;
+}
+
+.musicEqualizer span:nth-child(3) {
+  height: 0.48rem;
+  animation-delay: 0.3s;
+}
+
+.musicMutedMark {
+  margin-left: -0.04rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #f2d7a5;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+@keyframes musicEqualizerMove {
+  0%,
+  100% {
+    transform: scaleY(0.45);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 620px) {
+  .musicToggleButton {
+    top: 0.9rem;
+    right: 0.9rem;
+    width: 46px;
+    height: 46px;
+  }
+
+  .musicSpeakerIcon {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .musicEqualizer {
+    width: 0.6rem;
+    height: 0.86rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .musicToggleButton {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 43px;
+    height: 43px;
+  }
+
+  .musicSpeakerIcon {
+    width: 1.02rem;
+    height: 1.02rem;
+  }
+
+  .musicMutedMark {
+    font-size: 1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .footerHeartIcon {
+  .musicEqualizer span {
     animation: none;
   }
 }
@@ -1713,6 +2359,8 @@
    RESPONSIVE
 ========================= */
 
+
+
 @media (max-width: 900px) {
   .heroSection {
     min-height: 100svh;
@@ -1720,9 +2368,9 @@
   }
 
   .heroInner {
-    min-height: calc(100svh - 2rem);
-    gap: 0.8rem;
-  }
+  min-height: calc(100svh - 1.5rem);
+  gap: 0.55rem;
+ }
 
   .heroFlowerTopLeft {
     width: 235px;
@@ -1741,34 +2389,50 @@
   }
 
   .heroRingWrap {
-    width: 310px;
-  }
+  width: 310px;
+}
 
   .heroCoupleNames {
-    width: 70%;
-    font-size: 2.3rem;
-    transform: translateY(-12%);
-  }
+  width: 39%;
+  max-width: 126px;
+  font-size: 1.82rem;
+  line-height: 0.82;
+  transform: translate(-4%, -27%);
+}
 
   .heroAmpersand {
-    font-size: 2rem;
-  }
+  font-size: 1.42rem;
+}
 
   .heroInviteText {
-    max-width: 92%;
-    margin-top: -5.3rem;
-    font-size: 1rem;
-  }
+  max-width: 92%;
+  margin-top: -4.6rem;
+  font-size: 0.98rem;
+}
 
   .heroDateGrid {
-    grid-template-columns: 1fr;
-    gap: 0.55rem;
-  }
+  width: min(100%, 350px);
+  grid-template-columns: minmax(88px, 1fr) auto minmax(88px, 1fr);
+  gap: 0.55rem;
+}
 
   .heroDateLine {
-    width: 170px;
-    margin: 0 auto;
-  }
+  width: 84px;
+  margin: 0 auto;
+}
+
+  .heroDateLabel {
+  font-size: 0.76rem;
+}
+
+  .heroDateNumber {
+  font-size: 3.1rem;
+}
+
+.heroVenue {
+  font-size: 0.98rem;
+  line-height: 1.28;
+}
 
   .countdownSection {
     padding: 3rem 1rem;
@@ -1803,23 +2467,60 @@
   }
 
   .heroRingWrap {
-    width: 270px;
-  }
+  width: 285px;
+}
 
   .heroCoupleNames {
-    width: 72%;
-    font-size: 1.9rem;
-    transform: translateY(-12.5%);
-  }
+  width: 38%;
+  max-width: 108px;
+  font-size: 1.62rem;
+  line-height: 0.8;
+  transform: translate(-4%, -28%);
+}
 
-  .heroAmpersand {
-    font-size: 1.65rem;
-  }
+   .heroAmpersand {
+  font-size: 1.26rem;
+}
 
-  .heroInviteText {
-    margin-top: -4.3rem;
-    font-size: 0.95rem;
-  }
+ .heroInviteText {
+  margin-top: -3.9rem;
+  font-size: 0.94rem;
+}
+
+  .heroDateGrid {
+  width: min(100%, 330px);
+  grid-template-columns: minmax(78px, 1fr) auto minmax(78px, 1fr);
+  gap: 0.45rem;
+}
+
+ .heroDateSide {
+  gap: 0.22rem;
+}
+
+  .heroDateLine {
+  width: 72px;
+  max-width: 72px;
+  height: 3px;
+}
+
+  .heroDateLabel {
+  font-size: 0.68rem;
+  line-height: 1;
+}
+
+  .heroDateNumber {
+  font-size: 2.9rem;
+  
+}
+
+.heroYear {
+  font-size: 1.45rem;
+}
+
+.heroVenue {
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
 
   .countdownGrid {
     display: grid;
@@ -1852,20 +2553,480 @@
   }
 
   .heroRingWrap {
-    width: 248px;
-  }
+  width: 270px;
+}
 
-  .heroCoupleNames {
-    width: 73%;
-    font-size: 1.8rem;
-  }
+ .heroCoupleNames {
+  width: 37%;
+  max-width: 100px;
+  font-size: 1.48rem;
+  line-height: 0.8;
+  transform: translate(-4%, -29%);
+}
 
   .heroAmpersand {
-    font-size: 1.55rem;
-  }
+  font-size: 1.16rem;
+}
+
+  .heroDateGrid {
+  width: min(100%, 305px);
+  grid-template-columns: minmax(70px, 1fr) auto minmax(70px, 1fr);
+  gap: 0.35rem;
+}
+
+  .heroDateLine {
+  width: 62px;
+  max-width: 62px;
+}
+
+ .heroDateLabel {
+  font-size: 0.6rem;
+}
+
+  .heroDateNumber {
+  font-size: 2.65rem;
+}
+
+.heroVenue {
+  font-size: 0.9rem;
+}
 
   .countdownGrid {
     grid-template-columns: 1fr;
     max-width: 180px;
+  }
+}
+
+/* =========================
+   COUNTDOWN FINAL RESPONSIVE OVERRIDES
+   Keep desktop-style row on all screen sizes
+========================= */
+
+@media (max-width: 900px) {
+  .countdownSection {
+  min-height: clamp(380px, 46svh, 500px);
+  padding: 3.6rem 1rem;
+}
+
+  .countdownPanel {
+    width: min(100%, 780px);
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .countdownGrid {
+    width: min(100%, 720px);
+    display: grid;
+    grid-template-columns:
+      minmax(92px, 1fr)
+      auto
+      minmax(92px, 1fr)
+      auto
+      minmax(92px, 1fr)
+      auto
+      minmax(92px, 1fr);
+    align-items: start;
+    justify-content: center;
+    gap: 0 0.65rem;
+    margin: 0 auto;
+  }
+
+  .countdownItemWrap {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .countdownBox {
+    width: clamp(92px, 15vw, 124px);
+    height: clamp(92px, 15vw, 124px);
+    margin: 0 auto;
+  }
+
+  .countdownValue {
+    font-size: clamp(2.35rem, 5vw, 3.5rem);
+  }
+
+  .countdownColon {
+    height: clamp(92px, 15vw, 124px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2.35rem, 5vw, 4rem);
+    transform: translateY(-0.05rem);
+  }
+
+  .countdownLabel {
+    margin-top: 0.72rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .countdownSection {
+  min-height: 430px;
+  padding: 3.2rem 0.85rem;
+}
+
+  .countdownPanel {
+    width: 100%;
+  }
+
+  .countdownDivider {
+    margin-bottom: 1.7rem;
+  }
+
+  .countdownDividerBottom {
+    margin-top: 1.9rem;
+  }
+
+  .countdownDivider span,
+  .countdownDividerBottom span {
+    width: 70px;
+  }
+
+  .countdownSmallText {
+  margin-bottom: 1.45rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  line-height: 1.5;
+}
+
+  .countdownGrid {
+    width: min(100%, 340px);
+    display: grid;
+    grid-template-columns:
+      minmax(62px, 1fr)
+      auto
+      minmax(62px, 1fr)
+      auto
+      minmax(62px, 1fr)
+      auto
+      minmax(62px, 1fr);
+    align-items: start;
+    justify-content: center;
+    gap: 0 0.28rem;
+    margin: 0 auto;
+  }
+
+  .countdownItemWrap {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .countdownBox {
+    width: clamp(62px, 18vw, 78px);
+    height: clamp(62px, 18vw, 78px);
+    border-radius: 13px;
+    margin: 0 auto;
+  }
+
+  .countdownValue {
+    font-size: clamp(1.55rem, 7vw, 2.1rem);
+    letter-spacing: 0.01em;
+  }
+
+  .countdownDigit {
+    min-width: 0.48em;
+  }
+
+  .countdownColon {
+    height: clamp(62px, 18vw, 78px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.7rem, 7vw, 2.25rem);
+    transform: translateY(-0.02rem);
+  }
+
+  .countdownLabel {
+    margin-top: 0.6rem;
+    font-size: clamp(0.48rem, 2vw, 0.62rem);
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (max-width: 390px) {
+  .countdownSection {
+  min-height: 410px;
+  padding: 3rem 0.65rem;
+}
+
+  .countdownSmallText {
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+  }
+
+  .countdownGrid {
+    width: min(100%, 318px);
+    grid-template-columns:
+      minmax(56px, 1fr)
+      auto
+      minmax(56px, 1fr)
+      auto
+      minmax(56px, 1fr)
+      auto
+      minmax(56px, 1fr);
+    gap: 0 0.2rem;
+  }
+
+  .countdownBox {
+    width: clamp(56px, 17vw, 68px);
+    height: clamp(56px, 17vw, 68px);
+    border-radius: 12px;
+  }
+
+  .countdownValue {
+    font-size: clamp(1.38rem, 6.5vw, 1.82rem);
+  }
+
+  .countdownColon {
+    height: clamp(56px, 17vw, 68px);
+    font-size: clamp(1.45rem, 6.5vw, 2rem);
+  }
+
+  .countdownLabel {
+    font-size: 0.48rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* =========================
+   DETAILS TEXT ALIGNMENT FIX
+   Keeps both event detail columns aligned
+========================= */
+
+@media (min-width: 761px) {
+  .detailsText {
+    width: 420px;
+    display: grid;
+    grid-template-rows: 2.4rem 1.55rem 1.55rem 2.3rem;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .detailsText h3 {
+    width: 100%;
+    margin: 0;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .detailsText p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .detailsVenue {
+    margin-top: 0;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .detailsVenue span {
+    white-space: nowrap;
+  }
+}
+
+/* =========================
+   LOCATION SECTION GAP FIX
+   Reduce space after story section
+========================= */
+
+.locationCalendarSection {
+  margin-top: clamp(-4rem, -5vw, -2.4rem);
+  padding-top: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+@media (max-width: 900px) {
+  .locationCalendarSection {
+    margin-top: -3rem;
+    padding-top: 2.2rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .locationCalendarSection {
+    margin-top: -2.3rem;
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .locationCalendarSection {
+    margin-top: -2rem;
+    padding-top: 1.8rem;
+  }
+}
+
+/* =========================
+   RSVP BACKGROUND FIX
+   Keep normal page background behind RSVP
+========================= */
+
+.rsvpSection {
+  background: transparent;
+}
+
+/* =========================
+   FINAL SECTION SPACING + CALENDAR DROPDOWN FIX
+   Keeps section gaps consistent and prevents RSVP moving
+========================= */
+
+/* Common section gap cleanup */
+.detailsSection,
+.storySection,
+.locationCalendarSection,
+.rsvpSection,
+.footerSection {
+  margin-top: 0;
+}
+
+/* Keep top spacing similar between sections */
+.detailsSection {
+  padding-top: clamp(2.8rem, 4vw, 3.7rem);
+}
+
+.storySection {
+  padding-top: clamp(2.8rem, 4vw, 3.7rem);
+}
+
+.locationCalendarSection {
+  position: relative;
+  z-index: 5;
+  overflow: visible;
+  padding-top: clamp(2.8rem, 4vw, 3.7rem);
+  padding-bottom: clamp(3.2rem, 4.8vw, 4.6rem);
+}
+
+.rsvpSection {
+  position: relative;
+  z-index: 2;
+  padding-top: clamp(2.8rem, 4vw, 3.7rem);
+  background: transparent;
+}
+
+.footerSection {
+  padding-top: clamp(2.8rem, 4vw, 3.7rem);
+}
+
+/* Make calendar dropdown float instead of pushing RSVP down */
+.locationCalendarGrid {
+  align-items: start;
+  overflow: visible;
+}
+
+.calendarCard {
+  position: relative;
+  z-index: 10;
+  overflow: visible;
+  min-height: clamp(250px, 25vw, 330px);
+}
+
+/* Dropdown no longer affects layout height */
+.calendarOptions {
+  position: absolute;
+  top: calc(clamp(86px, 7vw, 104px) + 0.85rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  margin: 0;
+  width: calc(100% - clamp(1.5rem, 3vw, 3rem));
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .detailsSection,
+  .storySection,
+  .locationCalendarSection,
+  .rsvpSection,
+  .footerSection {
+    margin-top: 0;
+  }
+
+  .detailsSection,
+  .storySection,
+  .locationCalendarSection,
+  .rsvpSection,
+  .footerSection {
+    padding-top: 2.6rem;
+  }
+
+  .locationCalendarSection {
+    overflow: visible;
+    padding-bottom: 3.6rem;
+  }
+
+  .calendarCard {
+    min-height: 300px;
+  }
+
+  .calendarOptions {
+    top: calc(82px + 0.85rem);
+    width: calc(100% - 1rem);
+  }
+}
+
+/* Mobile */
+@media (max-width: 620px) {
+  .detailsSection,
+  .storySection,
+  .locationCalendarSection,
+  .rsvpSection,
+  .footerSection {
+    margin-top: 0;
+  }
+
+  .detailsSection,
+  .storySection,
+  .locationCalendarSection,
+  .rsvpSection,
+  .footerSection {
+    padding-top: 2.35rem;
+  }
+
+  .locationCalendarSection {
+    overflow: visible;
+    padding-bottom: 2.8rem;
+  }
+
+  .calendarCard {
+    min-height: 285px;
+  }
+
+  .calendarOptions {
+    top: calc(82px + 0.75rem);
+    width: calc(100% - 1rem);
+  }
+}
+
+/* Small mobile */
+@media (max-width: 390px) {
+  .detailsSection,
+  .storySection,
+  .locationCalendarSection,
+  .rsvpSection,
+  .footerSection {
+    padding-top: 2.15rem;
+  }
+
+  .locationCalendarSection {
+    padding-bottom: 2.6rem;
+  }
+
+  .calendarCard {
+    min-height: 275px;
+  }
+
+  .calendarOptions {
+    top: calc(78px + 0.7rem);
+    width: calc(100% - 0.8rem);
   }
 }

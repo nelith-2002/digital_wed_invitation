@@ -19,6 +19,7 @@ export default function HomecomingStory() {
             alt="Illustration of the couple"
             width={620}
             height={780}
+            sizes="(max-width: 520px) 325px, (max-width: 900px) 400px, 470px"
             className={styles.storyImage}
           />
         </div>

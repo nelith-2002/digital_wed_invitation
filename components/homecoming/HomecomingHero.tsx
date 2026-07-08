@@ -9,6 +9,7 @@ export default function HomecomingHero() {
         alt=""
         width={520}
         height={520}
+        sizes="(max-width: 520px) 170px, (max-width: 900px) 220px, 360px"
         className={styles.heroFlowerTopLeft}
         priority
       />
@@ -18,6 +19,7 @@ export default function HomecomingHero() {
         alt=""
         width={520}
         height={520}
+        sizes="(max-width: 520px) 180px, (max-width: 900px) 240px, 390px"
         className={styles.heroFlowerBottomRight}
         priority
       />
@@ -35,6 +37,7 @@ export default function HomecomingHero() {
             alt=""
             width={620}
             height={620}
+            sizes="(max-width: 520px) 220px, (max-width: 900px) 270px, 370px"
             className={styles.heroNameRing}
             priority
           />

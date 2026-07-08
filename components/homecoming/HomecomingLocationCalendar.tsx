@@ -6,15 +6,16 @@ import styles from "@/app/homecoming/homecoming.module.css";
 const eventDetails = {
   title: "Rahal & Lalisha Homecoming",
   description: "Homecoming celebration of Rahal and Lalisha.",
-  location: "Cinnamon Life, Cumulus Ballroom, Colombo, Sri Lanka",
+  location: "Cinnamon Life, Colombo 03, Sri Lanka",
 
-  // Sri Lanka time: 2026-09-05 18:30 to 23:30
   googleStart: "20260905T130000Z",
   googleEnd: "20260905T180000Z",
 
   icsStart: "20260905T183000",
   icsEnd: "20260905T233000",
 };
+
+const mapQuery = encodeURIComponent(eventDetails.location);
 
 function LocationPinIcon() {
   return (
@@ -119,7 +120,10 @@ function AppleCalendarLogo() {
   return (
     <svg viewBox="0 0 48 48" className={styles.calendarProviderIcon} aria-hidden>
       <rect x="6" y="6" width="36" height="36" rx="7" fill="#ffffff" />
-      <path d="M6 13C6 9.1 9.1 6 13 6H35C38.9 6 42 9.1 42 13V17H6V13Z" fill="#FF3B30" />
+      <path
+        d="M6 13C6 9.1 9.1 6 13 6H35C38.9 6 42 9.1 42 13V17H6V13Z"
+        fill="#FF3B30"
+      />
       <text
         x="24"
         y="15"
@@ -235,25 +239,27 @@ export default function HomecomingLocationCalendar() {
       <div className={styles.locationCalendarInner}>
         <p className={styles.locationEyebrow}>The Location</p>
 
-        <h2 className={styles.locationTitle}>Cinnamon Life, Colombo</h2>
+          <div className={styles.locationAddress}>
+    <div className={styles.locationAddressMainRow}>
+      <LocationPinIcon />
+      <span>Cinnamon Life, Colombo</span>
+    </div>
 
-        <p className={styles.locationAddress}>
-          <LocationPinIcon />
-          <span>Cinnamon Life, Cumulus Ballroom, Colombo, Sri Lanka</span>
-        </p>
+    <p className={styles.locationAddressSub}>Colombo 03, Sri Lanka</p>
+  </div>
 
         <div className={styles.locationCalendarGrid}>
           <div className={styles.mapCard}>
             <iframe
               title="Cinnamon Life Colombo location map"
-              src="https://www.google.com/maps?q=Cinnamon%20Life%20Colombo%20Sri%20Lanka&output=embed"
+              src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
               className={styles.mapFrame}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
 
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Cinnamon%20Life%20Colombo%20Sri%20Lanka"
+              href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
               target="_blank"
               rel="noreferrer"
               className={styles.openMapButton}

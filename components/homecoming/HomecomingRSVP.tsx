@@ -41,6 +41,7 @@ export default function HomecomingRSVP() {
   const [name, setName] = useState("");
   const [attendance, setAttendance] = useState<AttendanceStatus>(null);
   const [guestCount, setGuestCount] = useState(1);
+  const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
@@ -70,39 +71,39 @@ export default function HomecomingRSVP() {
   }
 
   if (submitted) {
-  return (
-    <section className={styles.rsvpSection}>
-      <div className={styles.rsvpSuccessCard}>
-        <HeartIcon />
+    return (
+      <section className={styles.rsvpSection}>
+        <div className={styles.rsvpSuccessCard}>
+          <HeartIcon />
 
-        <h2>RSVP Sent</h2>
+          <h2>RSVP Sent</h2>
 
-        {attendance === "accept" ? (
-          <>
-            <p className={styles.rsvpSuccessMain}>
-              We look forward to celebrating with you.
-            </p>
+          {attendance === "accept" ? (
+            <>
+              <p className={styles.rsvpSuccessMain}>
+                We look forward to celebrating with you.
+              </p>
 
-            <p className={styles.rsvpSuccessSub}>
-              Thank you, {name.trim()}. Your RSVP has been noted for{" "}
-              {guestCount} {guestCount === 1 ? "guest" : "guests"}.
-            </p>
-          </>
-        ) : (
-          <>
-            <p className={styles.rsvpSuccessMain}>
-              Thank you for letting us know.
-            </p>
+              <p className={styles.rsvpSuccessSub}>
+                Thank you, {name.trim()}. Your RSVP has been noted for{" "}
+                {guestCount} {guestCount === 1 ? "guest" : "guests"}.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className={styles.rsvpSuccessMain}>
+                Thank you for letting us know.
+              </p>
 
-            <p className={styles.rsvpSuccessSub}>
-              You will be missed, but we truly appreciate your response.
-            </p>
-          </>
-        )}
-      </div>
-    </section>
-  );
-}
+              <p className={styles.rsvpSuccessSub}>
+                You will be missed, but we truly appreciate your response.
+              </p>
+            </>
+          )}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.rsvpSection}>
@@ -153,6 +154,7 @@ export default function HomecomingRSVP() {
               }`}
               onClick={() => {
                 setAttendance("decline");
+                setGuestCount(1);
                 setError("");
               }}
             >
@@ -161,7 +163,7 @@ export default function HomecomingRSVP() {
           </div>
         </div>
 
-        {attendance !== "decline" && (
+        {attendance === "accept" && (
           <div className={styles.rsvpFieldGroup}>
             <label>Number of Guests</label>
 
@@ -178,6 +180,17 @@ export default function HomecomingRSVP() {
             </div>
           </div>
         )}
+
+        <div className={styles.rsvpFieldGroup}>
+          <label htmlFor="guestMessage">Message Optional</label>
+          <textarea
+            id="guestMessage"
+            value={message}
+            onChange={(event) => setMessage(event.target.value)}
+            placeholder="Write a message for the couple"
+            className={styles.rsvpMessageInput}
+          />
+        </div>
 
         {error && <p className={styles.rsvpError}>{error}</p>}
 

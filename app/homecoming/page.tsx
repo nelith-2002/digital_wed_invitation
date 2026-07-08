@@ -6,12 +6,14 @@ import HomecomingLocationCalendar from "@/components/homecoming/HomecomingLocati
 import HomecomingRSVP from "@/components/homecoming/HomecomingRSVP";
 import HomecomingFooter from "@/components/homecoming/HomecomingFooter";
 import HomecomingFallingFlowers from "@/components/homecoming/HomecomingFallingFlowers";
+import HomecomingMusicPlayer from "@/components/homecoming/HomecomingMusicPlayer";
 import styles from "./homecoming.module.css";
 
 export default function HomecomingPage() {
   return (
     <main className={styles.homecomingBackground}>
       <HomecomingFallingFlowers />
+      <HomecomingMusicPlayer />
 
       <div className={styles.homecomingContent}>
         <HomecomingHero />

@@ -7,7 +7,11 @@ type AttendanceStatus = "accept" | "decline" | null;
 
 function PaperPlaneIcon() {
   return (
-    <svg viewBox="0 0 24 24" className={styles.rsvpButtonIcon} aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      className={styles.rsvpButtonIcon}
+      aria-hidden="true"
+    >
       <path
         d="M21 3L9.7 14.3"
         fill="none"
@@ -28,7 +32,11 @@ function PaperPlaneIcon() {
 
 function HeartIcon() {
   return (
-    <svg viewBox="0 0 24 24" className={styles.rsvpSuccessIcon} aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      className={styles.rsvpSuccessIcon}
+      aria-hidden="true"
+    >
       <path
         d="M12 20.5C12 20.5 4.5 16.1 4.5 9.7C4.5 6.7 6.7 4.5 9.4 4.5C11 4.5 12 5.4 12.6 6.3C13.2 5.4 14.2 4.5 15.8 4.5C18.5 4.5 20.5 6.7 20.5 9.7C20.5 16.1 12 20.5 12 20.5Z"
         fill="currentColor"
@@ -43,6 +51,7 @@ export default function HomecomingRSVP() {
   const [guestCount, setGuestCount] = useState(1);
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   function decreaseGuests() {
@@ -53,10 +62,12 @@ export default function HomecomingRSVP() {
     setGuestCount((current) => Math.min(10, current + 1));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!name.trim()) {
+    const trimmedName = name.trim();
+
+    if (!trimmedName) {
       setError("Please enter your name.");
       return;
     }
@@ -66,8 +77,38 @@ export default function HomecomingRSVP() {
       return;
     }
 
-    setError("");
-    setSubmitted(true);
+    try {
+      setError("");
+      setIsSubmitting(true);
+
+      const response = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventType: "homecoming",
+          name: trimmedName,
+          attendance: attendance === "accept" ? "Accept" : "Decline",
+          guestCount: attendance === "accept" ? guestCount : 0,
+          message: message.trim(),
+          page: "/homecoming",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        setError(data.message || "Unable to send RSVP. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError("Unable to send RSVP. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -121,12 +162,14 @@ export default function HomecomingRSVP() {
       <form className={styles.rsvpFormCard} onSubmit={handleSubmit}>
         <div className={styles.rsvpFieldGroup}>
           <label htmlFor="guestName">Full Name</label>
+
           <input
             id="guestName"
             type="text"
             value={name}
             onChange={(event) => setName(event.target.value)}
             placeholder="Your Name"
+            disabled={isSubmitting}
           />
         </div>
 
@@ -143,6 +186,7 @@ export default function HomecomingRSVP() {
                 setAttendance("accept");
                 setError("");
               }}
+              disabled={isSubmitting}
             >
               Joyfully Accepts
             </button>
@@ -157,6 +201,7 @@ export default function HomecomingRSVP() {
                 setGuestCount(1);
                 setError("");
               }}
+              disabled={isSubmitting}
             >
               Regretfully Declines
             </button>
@@ -168,13 +213,23 @@ export default function HomecomingRSVP() {
             <label>Number of Guests</label>
 
             <div className={styles.rsvpGuestCounter}>
-              <button type="button" onClick={decreaseGuests} aria-label="Decrease guests">
+              <button
+                type="button"
+                onClick={decreaseGuests}
+                aria-label="Decrease guests"
+                disabled={isSubmitting}
+              >
                 -
               </button>
 
               <span>{guestCount}</span>
 
-              <button type="button" onClick={increaseGuests} aria-label="Increase guests">
+              <button
+                type="button"
+                onClick={increaseGuests}
+                aria-label="Increase guests"
+                disabled={isSubmitting}
+              >
                 +
               </button>
             </div>
@@ -183,20 +238,26 @@ export default function HomecomingRSVP() {
 
         <div className={styles.rsvpFieldGroup}>
           <label htmlFor="guestMessage">Message Optional</label>
+
           <textarea
             id="guestMessage"
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             placeholder="Write a message for the couple"
             className={styles.rsvpMessageInput}
+            disabled={isSubmitting}
           />
         </div>
 
         {error && <p className={styles.rsvpError}>{error}</p>}
 
-        <button type="submit" className={styles.rsvpSubmitButton}>
+        <button
+          type="submit"
+          className={styles.rsvpSubmitButton}
+          disabled={isSubmitting}
+        >
           <PaperPlaneIcon />
-          Send Our RSVP
+          {isSubmitting ? "Sending RSVP..." : "Send Our RSVP"}
         </button>
       </form>
     </section>

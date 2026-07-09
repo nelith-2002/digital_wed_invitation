@@ -1,6 +1,13 @@
 import { Montserrat, Cookie, Cinzel_Decorative, Cormorant_Garamond, Corinthia, Great_Vibes } from "next/font/google";
 import "../globals.css";
+import type { Metadata } from "next";
 import styles from "./wedding.module.css";
+
+export const metadata: Metadata = {
+  title: "Wedding Invitation",
+  description:
+    "Rahal and Lalisha wedding invitation with event details, location, calendar, and RSVP.",
+};
 
 const montserrat = Montserrat({
   subsets: ["latin"],

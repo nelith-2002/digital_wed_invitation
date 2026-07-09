@@ -427,7 +427,7 @@
 .countdownSmallText {
   margin: 0 0 clamp(1.6rem, 2.5vw, 2.35rem);
   font-family: var(--font-cormorant);
-  color: #713f26;
+  color: #5f311b;
   font-size: clamp(0.78rem, 1vw, 0.95rem);
   font-weight: 700;
   letter-spacing: 0.42em;
@@ -1682,6 +1682,34 @@
   background: #5a0858;
   transform: translateY(-1px);
   box-shadow: 0 14px 32px rgba(90, 8, 88, 0.16);
+}
+
+/* RSVP disabled state - Homecoming */
+.rsvpSubmitButton:disabled,
+.rsvpChoiceButton:disabled,
+.rsvpGuestCounter button:disabled,
+.rsvpFormCard input:disabled,
+.rsvpMessageInput:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.rsvpSubmitButton:disabled:hover,
+.rsvpChoiceButton:disabled:hover,
+.rsvpGuestCounter button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.rsvpSubmitButton:disabled {
+  background: #6a0d67;
+}
+
+.rsvpChoiceButton:disabled,
+.rsvpGuestCounter button:disabled,
+.rsvpFormCard input:disabled,
+.rsvpMessageInput:disabled {
+  pointer-events: none;
 }
 
 .rsvpButtonIcon {

@@ -6,6 +6,14 @@ import {
   Corinthia,
 } from "next/font/google";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Homecoming Invitation",
+  description:
+    "Rahal and Lalisha homecoming invitation with event details, countdown, location, calendar, and RSVP.",
+};
+
 const cookie = Cookie({
   subsets: ["latin"],
   weight: "400",

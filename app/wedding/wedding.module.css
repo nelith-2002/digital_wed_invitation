@@ -1061,6 +1061,33 @@
   transform: translateY(-2px);
 }
 
+/* RSVP disabled state - Wedding */
+.rsvpSubmitBtn:disabled,
+.rsvpAttendBtn:disabled,
+.rsvpGuestBtn:disabled,
+.rsvpInput:disabled,
+.rsvpTextarea:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.rsvpSubmitBtn:disabled:hover,
+.rsvpAttendBtn:disabled:hover,
+.rsvpGuestBtn:disabled:hover {
+  transform: none;
+}
+
+.rsvpSubmitBtn:disabled {
+  opacity: 0.75;
+}
+
+.rsvpAttendBtn:disabled,
+.rsvpGuestBtn:disabled,
+.rsvpInput:disabled,
+.rsvpTextarea:disabled {
+  pointer-events: none;
+}
+
 /* Success Box */
 .rsvpSuccessBox {
   position: relative;

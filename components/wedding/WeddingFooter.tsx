@@ -24,7 +24,7 @@ export default function WeddingFooter() {
       {/* Call Buttons */}
       <div className={styles.footerCallRow}>
         <a
-          href="tel:+94XXXXXXXXX"
+          href="tel:+94715533551"
           className={styles.footerCallBtn}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -34,7 +34,7 @@ export default function WeddingFooter() {
         </a>
 
         <a
-          href="tel:+94XXXXXXXXX"
+          href="tel:+94773291127"
           className={styles.footerCallBtn}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

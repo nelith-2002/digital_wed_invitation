@@ -101,7 +101,7 @@ export default function WeddingRSVP() {
           </p>
 
           <p className={styles.rsvpDeadline}>
-            Kindly respond by 28th August 2026
+            Kindly respond by 15th August 2026
           </p>
         </div>
 

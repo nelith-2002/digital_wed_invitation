@@ -1383,50 +1383,41 @@
 }
 
 /* ─────────────────────────────────────────────
-   HERO MOBILE BLACK BACKGROUND FIX ONLY
-   Covers the dark hero background band without changing layout/alignment
+   SAFE HERO MOBILE BLACK BAND FIX ONLY
+   Does not change hero layout, spacing, or alignment
 ───────────────────────────────────────────── */
 
 @media (max-width: 639px) {
-  .heroSection {
-    isolation: isolate;
-    background: #f7f1ea;
-  }
-
-  .heroSection::after {
+  .heroSection::before {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 44%;
-    z-index: 1;
+    height: 38%;
+    z-index: 0;
     pointer-events: none;
     background:
       linear-gradient(
         180deg,
         rgba(247, 241, 234, 0) 0%,
-        rgba(247, 241, 234, 0.76) 24%,
-        rgba(247, 241, 234, 0.96) 54%,
-        rgba(247, 241, 234, 1) 100%
+        rgba(247, 241, 234, 0.92) 18%,
+        #f7f1ea 42%,
+        #f7f1ea 100%
       );
-  }
-
-  .heroContent {
-    z-index: 3;
   }
 }
 
 @media (max-width: 390px) {
-  .heroSection::after {
-    height: 48%;
+  .heroSection::before {
+    height: 40%;
     background:
       linear-gradient(
         180deg,
         rgba(247, 241, 234, 0) 0%,
-        rgba(247, 241, 234, 0.82) 22%,
-        rgba(247, 241, 234, 0.98) 52%,
-        rgba(247, 241, 234, 1) 100%
+        rgba(247, 241, 234, 0.94) 16%,
+        #f7f1ea 40%,
+        #f7f1ea 100%
       );
   }
 }

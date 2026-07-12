@@ -40,7 +40,7 @@ export default function HomecomingFooter() {
           </p>
 
           <div className={styles.footerButtons}>
-            <a href="tel:+947XXXXXXXX" className={styles.footerCallButton}>
+            <a href="tel:+94715533551" className={styles.footerCallButton}>
               <PhoneIcon />
               <span>Call Lalisha</span>
             </a>

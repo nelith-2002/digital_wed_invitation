@@ -2,6 +2,7 @@ import styles from "./wedding.module.css";
 import WeddingHero from "@/components/wedding/WeddingHero";
 import WeddingCountdown from "@/components/wedding/WeddingCountdown";
 import WeddingLeafAnimation from "@/components/wedding/WeddingLeafAnimation";
+import WeddingGsapAnimations from "@/components/wedding/WeddingGsapAnimations";
 import Image from "next/image";
 import WeddingEvents from "@/components/wedding/WeddingEvents";
 import WeddingStory from "@/components/wedding/WeddingStory";
@@ -10,12 +11,9 @@ import WeddingLocation from "@/components/wedding/WeddingLocation";
 import WeddingRSVP from "@/components/wedding/WeddingRSVP";
 import WeddingFooter from "@/components/wedding/WeddingFooter";
 
-
-
 export default function WeddingPage() {
   return (
     <main className={styles.weddingRoot}>
-
       {/* Global background for whole page */}
       <div className={styles.globalBg}>
         <Image
@@ -26,18 +24,18 @@ export default function WeddingPage() {
           priority
         />
       </div>
-       
-      <WeddingMusic />
 
+      <WeddingMusic />
       <WeddingLeafAnimation />
+      <WeddingGsapAnimations />
+
       <WeddingHero />
       <WeddingCountdown />
-      <WeddingEvents /> 
+      <WeddingEvents />
       <WeddingStory />
       <WeddingLocation />
-      <WeddingRSVP />  
-      <WeddingFooter /> 
-
+      <WeddingRSVP />
+      <WeddingFooter />
     </main>
   );
 }

@@ -1237,361 +1237,147 @@
 }
 
 /* ─────────────────────────────────────────────
-   FINAL MOBILE HERO FIX
-   Fixes wedding hero date overlapping dark bg on phones
-   Safe CSS-only override: no component/feature changes
+   COUNTDOWN MOBILE RESPONSIVE FIX ONLY
+   Keeps existing hero alignment untouched
 ───────────────────────────────────────────── */
 
-/* Make the page background layer deterministic */
-.weddingRoot {
-  position: relative;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-.globalBg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.globalBg img {
-  object-position: center top;
-}
-
-/* Keep all main wedding sections above the global background */
-.heroSection,
-.countdownSection,
-.eventsSection,
-.storySection,
-.locationSection,
-.rsvpSection,
-.footerSection {
-  position: relative;
-  z-index: 1;
-}
-
-/* Mobile hero correction */
 @media (max-width: 639px) {
-  .heroSection {
-    height: auto;
-    min-height: 100svh;
-    overflow: hidden;
+  .countdownSection {
+    min-height: auto;
+    padding: 44px 14px;
   }
 
-  /* Softens the dark lower background only on mobile */
-  .heroSection::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(255, 250, 244, 0) 0%,
-        rgba(255, 250, 244, 0) 48%,
-        rgba(255, 250, 244, 0.88) 64%,
-        rgba(255, 250, 244, 0.94) 100%
-      );
+  .countdownBorder {
+    width: 100%;
+    max-width: 100%;
+    padding: 30px 14px;
+    gap: 18px;
+    border-radius: 16px;
   }
 
-  .heroContent {
-    position: relative;
-    min-height: 100svh;
-    z-index: 2;
-    grid-template-rows: 0.58fr 1.08fr 1.34fr;
-    padding: max(1rem, env(safe-area-inset-top)) 1rem 6.5rem;
-    align-content: start;
+  .countdownWrapper {
+    width: 100%;
+    max-width: 360px;
+    gap: 8px;
   }
 
-  .heroTop {
-    align-self: end;
-    padding-top: 0.6rem;
+  .countdownBoxRow {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
   }
 
-  .heroTop p {
-    font-size: clamp(0.58rem, 2.5vw, 0.72rem) !important;
-    letter-spacing: 0.24em !important;
-    line-height: 1.4 !important;
+  .countdownBoxGroup {
+    flex: 0 0 auto;
+    min-width: 0;
   }
 
-  .heroMiddle {
-    align-self: start;
-    transform: translateY(-0.65rem);
+  .countdownBox {
+    width: clamp(50px, 15.8vw, 68px);
+    height: clamp(50px, 15.8vw, 68px);
+    border-radius: 10px;
   }
 
-  .floralRing {
-    width: clamp(245px, 74vw, 300px);
-    height: clamp(285px, 86vw, 345px);
+  .countdownNumber {
+    font-size: clamp(1.45rem, 6vw, 2.15rem);
+    line-height: 1;
   }
 
-  .heroBottom {
-    align-self: start;
-    margin-top: clamp(-5.9rem, -15vw, -4.3rem);
-    gap: 0;
+  .countdownColon {
+    padding: 0 clamp(3px, 1.2vw, 6px);
+    margin-bottom: 5px;
+    font-size: clamp(1.15rem, 4.5vw, 1.75rem);
   }
 
-  .heroBottom > p:first-child {
-    max-width: 340px;
-    margin-bottom: 0.6rem !important;
-    color: #5c4a3a !important;
-    font-size: clamp(0.86rem, 3.25vw, 1rem) !important;
-    line-height: 1.45 !important;
+  .countdownLabelRow {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
   }
 
-  .heroBottom > p:nth-child(2) {
-    margin-bottom: 0.45rem !important;
-    color: #3b2a1a !important;
-    font-size: clamp(0.82rem, 3vw, 0.95rem) !important;
-    letter-spacing: 0.34em !important;
-  }
-
-  .heroBottom > div {
-    gap: clamp(0.55rem, 2.8vw, 0.85rem) !important;
-    margin-bottom: 0.35rem !important;
-  }
-
-  .heroBottom > div > p {
-    color: #3b2a1a !important;
-    font-size: clamp(2.75rem, 14vw, 3.75rem) !important;
-    line-height: 0.9 !important;
-  }
-
-  .heroBottom > div > div {
-    min-width: clamp(4rem, 19vw, 5rem);
-  }
-
-  .heroBottom > div > div > div {
-    width: clamp(3.8rem, 17vw, 4.6rem) !important;
-    height: 0.22rem !important;
-  }
-
-  .heroBottom > div > div > p {
-    color: #3b2a1a !important;
-    font-size: clamp(0.58rem, 2.45vw, 0.72rem) !important;
-    line-height: 1 !important;
+  .countdownLabel {
+    width: clamp(50px, 15.8vw, 68px);
+    font-size: clamp(0.52rem, 2vw, 0.68rem);
+    letter-spacing: 0.06em;
     white-space: nowrap;
   }
 
-  .heroBottom > p:last-child {
-    color: #3b2a1a !important;
-    font-size: clamp(0.82rem, 3vw, 0.95rem) !important;
-    letter-spacing: 0.28em !important;
-  }
-
-  .floralLeft {
-    width: clamp(175px, 48vw, 220px);
-    height: clamp(175px, 48vw, 220px);
-    bottom: -44px;
-    left: -76px;
-  }
-
-  .floralRight {
-    width: clamp(175px, 48vw, 220px);
-    height: clamp(175px, 48vw, 220px);
-    top: -48px;
-    right: -76px;
-  }
-
-  .musicBtn {
-    right: 1.15rem;
-    bottom: 1.15rem;
-    width: 48px;
-    height: 48px;
-  }
-}
-
-/* Smaller phones */
-@media (max-width: 390px) {
-  .heroContent {
-    grid-template-rows: 0.52fr 1fr 1.28fr;
-    padding: 0.8rem 0.85rem 6rem;
-  }
-
-  .heroMiddle {
-    transform: translateY(-0.8rem);
-  }
-
-  .floralRing {
-    width: clamp(230px, 72vw, 275px);
-    height: clamp(270px, 84vw, 320px);
-  }
-
-  .heroBottom {
-    margin-top: clamp(-5.6rem, -16vw, -4.25rem);
-  }
-
-  .heroBottom > p:first-child {
-    max-width: 315px;
-    font-size: 0.84rem !important;
-  }
-
-  .heroBottom > p:nth-child(2) {
-    font-size: 0.78rem !important;
-    letter-spacing: 0.3em !important;
-  }
-
-  .heroBottom > div {
-    gap: 0.48rem !important;
-  }
-
-  .heroBottom > div > p {
-    font-size: clamp(2.55rem, 13vw, 3.25rem) !important;
-  }
-
-  .heroBottom > div > div > div {
-    width: 3.55rem !important;
-  }
-
-  .heroBottom > div > div > p {
-    font-size: 0.56rem !important;
-  }
-
-  .heroBottom > p:last-child {
-    font-size: 0.78rem !important;
-  }
-}
-
-/* Very short mobile browser viewport */
-@media (max-width: 639px) and (max-height: 740px) {
-  .heroContent {
-    grid-template-rows: 0.48fr 0.92fr 1.18fr;
-    padding-bottom: 5.5rem;
-  }
-
-  .heroMiddle {
-    transform: translateY(-1.25rem);
-  }
-
-  .floralRing {
-    width: clamp(220px, 68vw, 270px);
-    height: clamp(260px, 78vw, 315px);
-  }
-
-  .heroBottom {
-    margin-top: clamp(-6.2rem, -18vw, -4.8rem);
-  }
-
-  .heroBottom > p:first-child {
-    margin-bottom: 0.45rem !important;
-    font-size: 0.82rem !important;
-    line-height: 1.35 !important;
-  }
-
-  .heroBottom > p:nth-child(2) {
-    margin-bottom: 0.35rem !important;
-  }
-
-  .heroBottom > div {
-    margin-bottom: 0.25rem !important;
-  }
-}
-
-/* ─────────────────────────────────────────────
-   FINAL WEDDING HERO MOBILE SPACING FIX - UPDATED
-   Further reduces empty space between date/year and bottom flower
-   CSS-only safe override
-───────────────────────────────────────────── */
-
-@media (max-width: 639px) {
-  .heroContent {
-    grid-template-rows: 0.38fr 0.65fr 1.95fr;
-    padding: max(0.75rem, env(safe-area-inset-top)) 1rem 3.2rem;
-  }
-
-  .heroMiddle {
-    transform: translateY(-1.7rem);
-  }
-
-  .floralRing {
-    width: clamp(210px, 64vw, 255px);
-    height: clamp(250px, 74vw, 300px);
-  }
-
-  .heroBottom {
-    align-self: start;
-    margin-top: clamp(-1.2rem, -3vw, -0.6rem);
-    transform: translateY(clamp(7.2rem, 21svh, 10rem));
-  }
-
-  .heroBottom > p:first-child {
-    margin-bottom: 0.5rem !important;
-  }
-
-  .heroBottom > p:nth-child(2) {
-    margin-bottom: 0.38rem !important;
-  }
-
-  .heroBottom > div {
-    margin-bottom: 0.28rem !important;
-  }
-
-  .floralLeft {
-    bottom: 8px;
-    left: -70px;
-    width: clamp(185px, 52vw, 235px);
-    height: clamp(185px, 52vw, 235px);
-  }
-
-  .floralRight {
-    top: -52px;
-    right: -76px;
-    width: clamp(165px, 44vw, 205px);
-    height: clamp(165px, 44vw, 205px);
+  .countdownLabel:not(:last-child) {
+    margin-right: clamp(14px, 4.4vw, 22px);
   }
 }
 
 @media (max-width: 390px) {
-  .heroContent {
-    grid-template-rows: 0.34fr 0.58fr 2fr;
-    padding: 0.7rem 0.85rem 2.8rem;
+  .countdownSection {
+    padding: 40px 10px;
   }
 
-  .heroMiddle {
-    transform: translateY(-1.85rem);
+  .countdownBorder {
+    padding: 28px 10px;
+    gap: 16px;
   }
 
-  .floralRing {
-    width: clamp(200px, 62vw, 245px);
-    height: clamp(240px, 72vw, 290px);
+  .countdownWrapper {
+    max-width: 330px;
   }
 
-  .heroBottom {
-    margin-top: clamp(-1rem, -3vw, -0.5rem);
-    transform: translateY(clamp(7rem, 20svh, 9.4rem));
+  .countdownBox {
+    width: clamp(48px, 15vw, 60px);
+    height: clamp(48px, 15vw, 60px);
+    border-radius: 9px;
   }
 
-  .floralLeft {
-    bottom: 10px;
-    left: -72px;
-    width: clamp(180px, 53vw, 225px);
-    height: clamp(180px, 53vw, 225px);
+  .countdownNumber {
+    font-size: clamp(1.35rem, 5.8vw, 1.9rem);
+  }
+
+  .countdownColon {
+    padding: 0 clamp(2px, 1vw, 4px);
+    font-size: clamp(1rem, 4vw, 1.45rem);
+  }
+
+  .countdownLabel {
+    width: clamp(48px, 15vw, 60px);
+    font-size: 0.5rem;
+    letter-spacing: 0.045em;
+  }
+
+  .countdownLabel:not(:last-child) {
+    margin-right: clamp(10px, 3.6vw, 16px);
   }
 }
 
-@media (max-width: 639px) and (max-height: 740px) {
-  .heroContent {
-    grid-template-rows: 0.32fr 0.52fr 1.9fr;
-    padding-bottom: 2.6rem;
+@media (max-width: 340px) {
+  .countdownBorder {
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
-  .heroMiddle {
-    transform: translateY(-2rem);
+  .countdownWrapper {
+    max-width: 300px;
   }
 
-  .floralRing {
-    width: clamp(195px, 60vw, 235px);
-    height: clamp(230px, 70vw, 280px);
+  .countdownBox {
+    width: 46px;
+    height: 46px;
   }
 
-  .heroBottom {
-    margin-top: clamp(-0.9rem, -3vw, -0.45rem);
-    transform: translateY(clamp(6.3rem, 18svh, 8.2rem));
+  .countdownNumber {
+    font-size: 1.3rem;
   }
 
-  .floralLeft {
-    bottom: 6px;
+  .countdownColon {
+    padding: 0 2px;
+    font-size: 1rem;
+  }
+
+  .countdownLabel {
+    width: 46px;
+    font-size: 0.46rem;
+    letter-spacing: 0.035em;
+  }
+
+  .countdownLabel:not(:last-child) {
+    margin-right: 9px;
   }
 }

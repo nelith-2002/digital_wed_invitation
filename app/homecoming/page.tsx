@@ -7,11 +7,13 @@ import HomecomingRSVP from "@/components/homecoming/HomecomingRSVP";
 import HomecomingFooter from "@/components/homecoming/HomecomingFooter";
 import HomecomingFallingFlowers from "@/components/homecoming/HomecomingFallingFlowers";
 import HomecomingMusicPlayer from "@/components/homecoming/HomecomingMusicPlayer";
+import HomecomingGsapAnimations from "@/components/homecoming/HomecomingGsapAnimations";
 import styles from "./homecoming.module.css";
 
 export default function HomecomingPage() {
   return (
     <main className={styles.homecomingBackground}>
+      <HomecomingGsapAnimations />
       <HomecomingFallingFlowers />
       <HomecomingMusicPlayer />
 

@@ -43,9 +43,9 @@ export default function HomecomingHero() {
           />
 
           <h1 className={styles.heroCoupleNames}>
-            <span>Lalisha</span>
-            <span className={styles.heroAmpersand}>&</span>
             <span>Rahal</span>
+            <span className={styles.heroAmpersand}>&</span>
+            <span>Lalisha</span>
           </h1>
         </div>
 

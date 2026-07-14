@@ -53,13 +53,13 @@ export default function WeddingHero() {
             />
             <div className={`absolute flex flex-col items-center justify-center ${styles.coupleFont}`}>
               <span className="text-[#3b2a1a]" style={{ fontSize: "clamp(1.6rem, 4vw, 2.5rem)" }}>
-                Lalisha
+                Rahal
               </span>
               <span className="text-[#b8912a] font-sans font-light" style={{ fontSize: "clamp(1rem, 2.5vw, 1.5rem)" }}>
                 &amp;
               </span>
               <span className="text-[#3b2a1a]" style={{ fontSize: "clamp(1.6rem, 4vw, 2.5rem)" }}>
-                Rahal
+                Lalisha
               </span>
             </div>
           </div>

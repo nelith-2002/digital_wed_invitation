@@ -3231,3 +3231,353 @@
     padding-top: 1.25rem;
   }
 }
+
+/* =========================
+   HOMECOMING COUNTDOWN MOBILE FINAL FIX
+   Desktop-style row preserved below 620px
+========================= */
+
+@media (max-width: 620px) {
+  .countdownSection {
+    min-height: clamp(500px, 58svh, 560px);
+    padding: 3.4rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .countdownPanel {
+    width: 100%;
+    max-width: 430px;
+    padding: 0;
+  }
+
+  .countdownDivider {
+    margin-bottom: 1.55rem;
+  }
+
+  .countdownDividerBottom {
+    margin-top: 1.75rem;
+  }
+
+  .countdownDivider span,
+  .countdownDividerBottom span {
+    width: clamp(62px, 17vw, 92px);
+  }
+
+  .countdownSmallText {
+    margin-bottom: 1.55rem;
+    font-size: clamp(0.62rem, 1.8vw, 0.72rem);
+    letter-spacing: clamp(0.18em, 0.9vw, 0.28em);
+    line-height: 1.45;
+    white-space: nowrap;
+  }
+
+  .countdownGrid {
+    width: min(100%, 410px);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(0.18rem, 0.9vw, 0.4rem);
+  }
+
+  .countdownItemWrap {
+    flex: 0 0 clamp(68px, 18.8vw, 82px);
+    width: clamp(68px, 18.8vw, 82px);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .countdownBox {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 0;
+    border-radius: clamp(12px, 3vw, 15px);
+  }
+
+  .countdownValue {
+    font-size: clamp(1.62rem, 6.4vw, 2.18rem);
+    letter-spacing: 0.01em;
+  }
+
+  .countdownDigit {
+    min-width: 0.48em;
+  }
+
+  .countdownColon {
+    flex: 0 0 clamp(0.5rem, 2.8vw, 0.85rem);
+    width: clamp(0.5rem, 2.8vw, 0.85rem);
+    height: clamp(68px, 18.8vw, 82px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.65rem, 6.5vw, 2.25rem);
+    line-height: 1;
+    transform: translateY(-0.02rem);
+  }
+
+  .countdownLabel {
+    width: 100%;
+    margin-top: 0.64rem;
+    font-size: clamp(0.45rem, 1.75vw, 0.56rem);
+    letter-spacing: clamp(0.08em, 0.45vw, 0.14em);
+    line-height: 1.2;
+    white-space: nowrap;
+    text-align: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .countdownSection {
+    min-height: clamp(490px, 58svh, 540px);
+    padding: 3.25rem 0.65rem;
+  }
+
+  .countdownPanel {
+    max-width: 390px;
+  }
+
+  .countdownGrid {
+    width: min(100%, 360px);
+    gap: 0.18rem;
+  }
+
+  .countdownItemWrap {
+    flex-basis: clamp(62px, 17.2vw, 72px);
+    width: clamp(62px, 17.2vw, 72px);
+  }
+
+  .countdownColon {
+    flex-basis: 0.52rem;
+    width: 0.52rem;
+    height: clamp(62px, 17.2vw, 72px);
+    font-size: clamp(1.35rem, 6vw, 1.8rem);
+  }
+
+  .countdownValue {
+    font-size: clamp(1.42rem, 6vw, 1.85rem);
+  }
+
+  .countdownLabel {
+    margin-top: 0.58rem;
+    font-size: 0.44rem;
+    letter-spacing: 0.095em;
+  }
+}
+
+@media (max-width: 390px) {
+  .countdownSection {
+    min-height: clamp(480px, 57svh, 520px);
+    padding: 3.1rem 0.55rem;
+  }
+
+  .countdownDivider {
+    margin-bottom: 1.35rem;
+  }
+
+  .countdownDividerBottom {
+    margin-top: 1.55rem;
+  }
+
+  .countdownDivider span,
+  .countdownDividerBottom span {
+    width: 58px;
+  }
+
+  .countdownSmallText {
+    margin-bottom: 1.35rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.17em;
+  }
+
+  .countdownGrid {
+    width: min(100%, 336px);
+    gap: 0.12rem;
+  }
+
+  .countdownItemWrap {
+    flex-basis: clamp(58px, 16.8vw, 66px);
+    width: clamp(58px, 16.8vw, 66px);
+  }
+
+  .countdownColon {
+    flex-basis: 0.45rem;
+    width: 0.45rem;
+    height: clamp(58px, 16.8vw, 66px);
+    font-size: clamp(1.25rem, 5.8vw, 1.62rem);
+  }
+
+  .countdownValue {
+    font-size: clamp(1.32rem, 5.8vw, 1.68rem);
+  }
+
+  .countdownLabel {
+    font-size: 0.41rem;
+    letter-spacing: 0.075em;
+  }
+}
+
+@media (max-width: 350px) {
+  .countdownGrid {
+    width: min(100%, 304px);
+    gap: 0.08rem;
+  }
+
+  .countdownItemWrap {
+    flex-basis: 54px;
+    width: 54px;
+  }
+
+  .countdownColon {
+    flex-basis: 0.38rem;
+    width: 0.38rem;
+    height: 54px;
+    font-size: 1.22rem;
+  }
+
+  .countdownValue {
+    font-size: 1.24rem;
+  }
+
+  .countdownLabel {
+    font-size: 0.38rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* =========================
+   HOMECOMING COUNTDOWN MOBILE HEIGHT TUNE
+   Reduces unnecessary purple background height below 620px
+========================= */
+
+@media (max-width: 620px) {
+  .countdownSection {
+    min-height: clamp(430px, 50svh, 470px);
+    padding-top: clamp(2.5rem, 6vw, 3rem);
+    padding-bottom: clamp(2.45rem, 6vw, 2.9rem);
+  }
+
+  .countdownDivider {
+    margin-bottom: 1.25rem;
+  }
+
+  .countdownSmallText {
+    margin-bottom: 1.25rem;
+  }
+
+  .countdownDividerBottom {
+    margin-top: 1.35rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .countdownSection {
+    min-height: 420px;
+    padding-top: 2.45rem;
+    padding-bottom: 2.35rem;
+  }
+
+  .countdownDivider {
+    margin-bottom: 1.1rem;
+  }
+
+  .countdownSmallText {
+    margin-bottom: 1.1rem;
+  }
+
+  .countdownDividerBottom {
+    margin-top: 1.2rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .countdownSection {
+    min-height: 400px;
+    padding-top: 2.3rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .countdownDivider {
+    margin-bottom: 1rem;
+  }
+
+  .countdownSmallText {
+    margin-bottom: 1rem;
+  }
+
+  .countdownDividerBottom {
+    margin-top: 1.1rem;
+  }
+}
+
+/* =========================
+   HOMECOMING COUNTDOWN MOBILE WIDTH TUNE
+   Slightly widens the countdown row below 620px
+========================= */
+
+@media (max-width: 620px) {
+  .countdownPanel {
+    max-width: 470px;
+  }
+
+  .countdownGrid {
+    width: min(100%, 440px);
+    gap: clamp(0.22rem, 1vw, 0.48rem);
+  }
+
+  .countdownItemWrap {
+    flex-basis: clamp(72px, 19.5vw, 88px);
+    width: clamp(72px, 19.5vw, 88px);
+  }
+
+  .countdownColon {
+    flex-basis: clamp(0.58rem, 3vw, 0.95rem);
+    width: clamp(0.58rem, 3vw, 0.95rem);
+    height: clamp(72px, 19.5vw, 88px);
+  }
+}
+
+@media (max-width: 430px) {
+  .countdownPanel {
+    max-width: 410px;
+  }
+
+  .countdownGrid {
+    width: min(100%, 382px);
+    gap: 0.22rem;
+  }
+
+  .countdownItemWrap {
+    flex-basis: clamp(68px, 18.2vw, 78px);
+    width: clamp(68px, 18.2vw, 78px);
+  }
+
+  .countdownColon {
+    flex-basis: 0.58rem;
+    width: 0.58rem;
+    height: clamp(68px, 18.2vw, 78px);
+  }
+}
+
+@media (max-width: 390px) {
+  .countdownGrid {
+    width: min(100%, 356px);
+    gap: 0.16rem;
+  }
+
+  .countdownItemWrap {
+    flex-basis: clamp(62px, 17.8vw, 70px);
+    width: clamp(62px, 17.8vw, 70px);
+  }
+
+  .countdownColon {
+    flex-basis: 0.5rem;
+    width: 0.5rem;
+    height: clamp(62px, 17.8vw, 70px);
+  }
+}

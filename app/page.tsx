@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import IconixCodeCredit from "@/components/common/IconixCodeCredit";
 
 const AUTO_REFRESH_INTERVAL = 10000;
 const DASHBOARD_AUTH_REQUIRED_ERROR = "DASHBOARD_AUTH_REQUIRED";
@@ -750,6 +751,8 @@ export default function Home() {
             Final guests can use the QR code printed on their invitation card to
             open the correct invitation page directly.
           </p>
+
+          <IconixCodeCredit variant="dashboard" />
         </div>
       </section>
     </main>

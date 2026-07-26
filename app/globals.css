@@ -24,3 +24,154 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.iconixFooterCredit {
+  --iconix-credit-color: rgba(118, 81, 62, 0.88);
+  --iconix-brand-color: #202426;
+
+  width: 100%;
+  max-width: calc(100% - 2rem);
+  margin: 0.85rem auto 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.45rem;
+  text-align: center;
+  font-family:
+    var(--font-cormorant, Georgia),
+    "Times New Roman",
+    serif;
+  font-size: clamp(0.78rem, 1.12vw, 0.92rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--iconix-credit-color);
+}
+
+/* Dashboard: move credit slightly lower under the QR note */
+.iconixFooterCredit.iconixFooterCreditDashboard {
+  margin-top: 1.7rem;
+}
+
+/* Wedding: keep compact so footer height does not increase unnecessarily */
+footer > .iconixFooterCredit:not(.iconixFooterCreditHomecoming) {
+  margin-top: 0;
+}
+
+/* Homecoming: slightly lower and stronger on purple footer */
+.iconixFooterCredit.iconixFooterCreditHomecoming {
+  --iconix-credit-color: rgba(58, 35, 52, 0.95);
+  --iconix-brand-color: #151018;
+
+  margin-top: clamp(1.9rem, 2.6vw, 2.35rem);
+  font-weight: 800;
+}
+
+/* The normal sentence uses the website serif style */
+.iconixFooterCredit > span {
+  font-family:
+    var(--font-cormorant, Georgia),
+    "Times New Roman",
+    serif;
+  font-weight: 700;
+}
+
+/* ICONIXCODE gets a slightly special tech/logo-like style */
+.iconixFooterBrand {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--iconix-brand-color);
+  font-family:
+    var(--font-iconix),
+    "Eurostile",
+    "Bank Gothic",
+    "Arial Narrow",
+    Arial,
+    sans-serif;
+  font-size: clamp(0.84rem, 1.18vw, 1rem);
+  font-weight: 900;
+  letter-spacing: 0.085em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--iconix-credit-color);
+  transform: scaleX(1.045);
+  transform-origin: left center;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease,
+    text-decoration-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.iconixFooterBrand:hover {
+  color: #111517;
+  opacity: 0.9;
+  transform: scaleX(1.045) translateY(-1px);
+  text-decoration-color: var(--iconix-credit-color);
+}
+
+.iconixFooterX {
+  color: #1594eb;
+  font-weight: 900;
+}
+
+/* Homecoming only: make ICONIXCODE readable on the purple footer */
+.iconixFooterCreditHomecoming .iconixFooterBrand {
+  color: #151018;
+  text-shadow: 0 1px 0 rgba(255, 248, 252, 0.12);
+}
+
+@media (max-width: 640px) {
+  .iconixFooterCredit {
+    max-width: calc(100% - 1.25rem);
+    margin-top: 0.7rem;
+    gap: 0.3rem;
+    font-size: 0.64rem;
+    letter-spacing: 0.075em;
+    line-height: 1.45;
+  }
+
+  .iconixFooterCredit.iconixFooterCreditDashboard {
+    margin-top: 1.3rem;
+  }
+
+  footer > .iconixFooterCredit:not(.iconixFooterCreditHomecoming) {
+    margin-top: 0.05rem;
+  }
+
+  .iconixFooterCredit.iconixFooterCreditHomecoming {
+    margin-top: 1.25rem;
+  }
+
+  .iconixFooterBrand {
+    font-size: 0.69rem;
+    letter-spacing: 0.055em;
+    text-underline-offset: 0.18em;
+    transform: scaleX(1.02);
+  }
+
+  .iconixFooterBrand:hover {
+    transform: scaleX(1.02) translateY(-1px);
+  }
+}
+
+@media (max-width: 390px) {
+  .iconixFooterCredit {
+    max-width: calc(100% - 1rem);
+    gap: 0.24rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.055em;
+  }
+
+  .iconixFooterBrand {
+    font-size: 0.62rem;
+    letter-spacing: 0.045em;
+  }
+}

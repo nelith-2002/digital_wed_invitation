@@ -1,4 +1,5 @@
 import styles from "@/app/homecoming/homecoming.module.css";
+import IconixCodeCredit from "@/components/common/IconixCodeCredit";
 
 function PhoneIcon() {
   return (
@@ -62,6 +63,7 @@ export default function HomecomingFooter() {
           <HeartIcon />
         </div>
       </div>
+      <IconixCodeCredit variant="homecoming" />
     </footer>
   );
 }

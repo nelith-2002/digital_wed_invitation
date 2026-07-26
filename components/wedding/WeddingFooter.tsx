@@ -1,4 +1,5 @@
 import styles from "@/app/wedding/wedding.module.css";
+import IconixCodeCredit from "@/components/common/IconixCodeCredit";
 
 export default function WeddingFooter() {
   return (
@@ -51,7 +52,7 @@ export default function WeddingFooter() {
 
       {/* Bottom Divider Line */}
       <div className={styles.footerBottomDivider} />
-
+      <IconixCodeCredit />
     </footer>
   );
 }

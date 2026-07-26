@@ -3,6 +3,7 @@ import Image from "next/image";
 
 export default function WeddingLocation() {
   const venueQuery = "Cinnamon Grand Colombo, Colombo, Sri Lanka";
+  const ballroomName = "Atrium";
 
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
     venueQuery
@@ -61,6 +62,10 @@ export default function WeddingLocation() {
 
             {/* Venue Name */}
             <h3 className={styles.venueName}>Cinnamon Grand</h3>
+
+            {/* Ballroom Name */}
+            <p className={styles.venueBallroom}>{ballroomName}</p>
+
             <p className={styles.venueAddress}>Colombo, Sri Lanka</p>
 
             {/* Get Directions Button */}

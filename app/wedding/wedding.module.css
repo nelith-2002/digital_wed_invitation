@@ -1,5 +1,19 @@
 .weddingRoot {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  isolation: isolate;
+  background: #f7f1ea;
   font-family: var(--font-montserrat), sans-serif;
+}
+
+.globalBg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: #f7f1ea;
 }
 
 .coupleFont {
@@ -330,6 +344,30 @@
 .eventCardImg:hover {
   transform: translateY(-10px);
   filter: drop-shadow(0 20px 30px rgba(180, 130, 40, 0.25));
+}
+
+/* Poruwa ceremony card border clarity fix only */
+.poruwaEventCardImg {
+  position: relative;
+  overflow: visible;
+  padding: 3px;
+}
+
+.poruwaEventCardImg img {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.poruwaEventCardImg::after {
+  content: "";
+  position: absolute;
+  inset: 3px 3px 3px 3px;
+  z-index: 4;
+  pointer-events: none;
+  border: 0.4px solid rgba(201, 168, 76, 0.92);
+  border-radius: 999px 999px 0 0;
+  box-sizing: border-box;
 }
 
 .saveOurDateWrapper {
@@ -689,6 +727,14 @@
   margin: 0 auto;
 }
 
+.venueBallroom{
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: #3b1f2b;
+  font-weight: 600;
+  font-style: italic;
+}
+
 @media (min-width: 768px) {
   .venueCard {
     margin: 0;
@@ -867,13 +913,15 @@
   text-align: center;
   line-height: 1.7;
   max-width: 420px;
+  
 }
 
 .rsvpDeadline {
   font-family: var(--font-cormorant), serif;
-  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-size: clamp(0.9rem, 2.1vw, 1.3rem);
   color: #b8912a;
   font-style: italic;
+  font-weight: 900;
   letter-spacing: 0.05em;
 }
 

@@ -171,67 +171,61 @@ export default function WeddingGsapAnimations() {
       }
 
       /*
-        HERO
-        Sound/music button animation is intentionally removed.
-        Hero uses opacity/filter only to avoid breaking existing mobile transforms.
-      */
-      const heroTimeline = gsap.timeline({
-        defaults: {
-          ease: "power2.out",
-        },
-      });
+      HERO
+      Keep hero visible on first paint.
+      Soft blur reveal only, without hiding content.
+    */
+    const heroTimeline = gsap.timeline({
+      defaults: {
+        ease: "power2.out",
+      },
+    });
 
-      heroTimeline
-        .fromTo(
-          classSelector(styles.heroTop),
-          {
-            autoAlpha: 0,
-            filter: "blur(4px)",
-          },
-          {
-            autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 0.5,
-          }
-        )
-        .fromTo(
-          classSelector(styles.heroMiddle),
-          {
-            autoAlpha: 0,
-            filter: "blur(5px)",
-          },
-          {
-            autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 0.62,
-          },
-          "-=0.22"
-        )
-        .fromTo(
-          classSelector(styles.heroBottom),
-          {
-            autoAlpha: 0,
-            filter: "blur(4px)",
-          },
-          {
-            autoAlpha: 1,
-            filter: "blur(0px)",
-            duration: 0.56,
-          },
-          "-=0.2"
-        )
-        .fromTo(
-          classSelectors([styles.floralLeft, styles.floralRight]),
-          {
-            autoAlpha: 0,
-          },
-          {
-            autoAlpha: 1,
-            duration: 0.62,
-            stagger: 0.08,
-          },
-          "-=0.35"
-        );
+    heroTimeline
+      .fromTo(
+        classSelector(styles.heroTop),
+        {
+          filter: "blur(2px)",
+        },
+        {
+          autoAlpha: 1,
+          filter: "blur(0px)",
+          duration: 0.38,
+        }
+      )
+      .fromTo(
+        classSelector(styles.heroMiddle),
+        {
+          filter: "blur(3px)",
+        },
+        {
+          autoAlpha: 1,
+          filter: "blur(0px)",
+          duration: 0.48,
+        },
+        "-=0.16"
+      )
+      .fromTo(
+        classSelector(styles.heroBottom),
+        {
+          filter: "blur(2px)",
+        },
+        {
+          autoAlpha: 1,
+          filter: "blur(0px)",
+          duration: 0.44,
+        },
+        "-=0.14"
+      )
+      .to(
+        classSelectors([styles.floralLeft, styles.floralRight]),
+        {
+          autoAlpha: 1,
+          duration: 0.42,
+          stagger: 0.06,
+        },
+        "-=0.28"
+      );
 
       /*
         COUNTDOWN

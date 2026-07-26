@@ -240,6 +240,8 @@ function downloadAppleCalendarFile() {
   window.URL.revokeObjectURL(url);
 }
 
+
+
 export default function WeddingEvents() {
   const [calendarOpen, setCalendarOpen] = useState(false);
 
@@ -274,10 +276,10 @@ export default function WeddingEvents() {
 
       {/* Event Cards */}
       <div className={styles.eventsGrid}>
-        <div className={styles.eventCardImg}>
+        <div className={`${styles.eventCardImg} ${styles.poruwaEventCardImg}`}>
           <Image
             src="/wedding/poruwa-ceremony-card.png"
-            alt="Wedding Ceremony"
+            alt="Poruwa Ceremony"
             width={300}
             height={320}
             style={{ objectFit: "contain", width: "100%", height: "auto" }}

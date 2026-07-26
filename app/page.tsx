@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const AUTO_REFRESH_INTERVAL = 10000;
+const DASHBOARD_AUTH_REQUIRED_ERROR = "DASHBOARD_AUTH_REQUIRED";
 
 const weddingRsvpLink =
   "https://docs.google.com/spreadsheets/d/1SBIUKJH5vYr39HUXD3amEffXp_0ysHmcIpOXUnbds6w/edit?gid=0#gid=0";
@@ -67,13 +69,27 @@ async function fetchDashboardStats(): Promise<DashboardStats> {
     cache: "no-store",
   });
 
-  const data = await response.json();
+  let data: {
+    success?: boolean;
+    message?: string;
+    stats?: DashboardStats;
+  } = {};
+
+  try {
+    data = await response.json();
+  } catch {
+    throw new Error("Unable to read RSVP stats.");
+  }
+
+  if (response.status === 401) {
+    throw new Error(DASHBOARD_AUTH_REQUIRED_ERROR);
+  }
 
   if (!response.ok || !data.success || !data.stats) {
     throw new Error(data.message || "Unable to load RSVP stats.");
   }
 
-  return data.stats as DashboardStats;
+  return data.stats;
 }
 
 async function checkPageStatus(path: string): Promise<SiteStatus> {
@@ -452,6 +468,9 @@ function SheetCard({
 }
 
 export default function Home() {
+  const router = useRouter();
+  const isDashboardDataLoadingRef = useRef(false);
+
   const [stats, setStats] = useState<DashboardStats>(emptyStats);
   const [websiteHealth, setWebsiteHealth] =
     useState<WebsiteHealth>(initialWebsiteHealth);
@@ -459,10 +478,36 @@ export default function Home() {
   const [lastUpdated, setLastUpdated] = useState("");
   const [error, setError] = useState("");
 
+  async function handleLogout() {
+    try {
+      setError("");
+
+      const response = await fetch("/api/logout", {
+        method: "POST",
+      });
+
+      if (!response.ok) {
+        setError("Unable to logout. Please try again.");
+        return;
+      }
+
+      router.replace("/login");
+      router.refresh();
+    } catch {
+      setError("Unable to logout. Please check your connection and try again.");
+    }
+  }
+
   useEffect(() => {
     let isMounted = true;
 
     async function loadDashboardData() {
+      if (isDashboardDataLoadingRef.current) {
+        return;
+      }
+
+      isDashboardDataLoadingRef.current = true;
+
       try {
         setError("");
 
@@ -489,11 +534,22 @@ export default function Home() {
             second: "2-digit",
           })
         );
-      } catch {
+      } catch (caughtError) {
+        if (
+          caughtError instanceof Error &&
+          caughtError.message === DASHBOARD_AUTH_REQUIRED_ERROR
+        ) {
+          router.replace("/login?next=%2F");
+          router.refresh();
+          return;
+        }
+
         if (isMounted) {
           setError("Unable to load live dashboard data.");
         }
       } finally {
+        isDashboardDataLoadingRef.current = false;
+
         if (isMounted) {
           setIsLoading(false);
         }
@@ -510,7 +566,7 @@ export default function Home() {
       isMounted = false;
       window.clearInterval(interval);
     };
-  }, []);
+  }, [router]);
 
   return (
     <main className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#f6eee9] px-3 py-4 text-center sm:px-6 lg:px-8">
@@ -520,6 +576,16 @@ export default function Home() {
 
       <section className="relative z-10 w-full max-w-6xl rounded-[1.5rem] border border-white/50 bg-white/45 p-2.5 shadow-[0_24px_70px_rgba(70,30,74,0.13)] backdrop-blur-md sm:rounded-[1.8rem] sm:p-4">
         <div className="rounded-[1.25rem] border border-[#a97231]/35 bg-[#fff8f2]/72 px-4 py-5 sm:rounded-[1.45rem] sm:px-7 sm:py-7 lg:px-9 lg:py-8">
+          <div className="mb-3 flex justify-end">
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="rounded-full border border-[#76513e]/25 bg-white/65 px-4 py-2 font-serif text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[#76513e] transition hover:border-[#6a0d67] hover:bg-white hover:text-[#5a0858]"
+            >
+              Logout
+            </button>
+          </div>
+
           <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-[#a97231]/45 bg-[#3b1239] shadow-sm sm:h-16 sm:w-16">
             <Image
               src="/brand/lr-logo.png"

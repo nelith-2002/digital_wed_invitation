@@ -16,7 +16,7 @@
 
 .homecomingContent {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* =========================
@@ -26,7 +26,7 @@
 .fallingFlowersLayer {
   position: fixed;
   inset: 0;
-  z-index: 3;
+  z-index: 1;
   pointer-events: none;
   overflow: hidden;
 }
@@ -105,7 +105,7 @@
   }
 
   .fallingFlowersLayer {
-    z-index: 3;
+    z-index: 1;
   }
 }
 
@@ -1486,11 +1486,16 @@
   display: block;
   font-family: var(--font-cormorant);
   color: #76513e;
-  font-size: clamp(0.88rem, 1.2vw, 0.99rem);
+  font-size: clamp(0.98rem, 1.35vw, 1.12rem);
   font-weight: 900;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.26em;
   line-height: 1.45;
+  text-transform: uppercase;
+  text-shadow:
+    0 2px 12px rgba(90, 8, 88, 0.18),
+    0 0 18px rgba(169, 114, 49, 0.18);
 }
+
 
 .rsvpFormCard {
   position: relative;
@@ -1888,9 +1893,10 @@
   }
 
   .rsvpIntro span {
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-  }
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
 
   .rsvpFormCard {
     padding: 1.25rem;
@@ -1985,9 +1991,10 @@
   }
 
   .rsvpIntro span {
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-  }
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
 
   .rsvpFormCard {
     padding: 1.05rem;
@@ -3056,5 +3063,171 @@
   .calendarOptions {
     top: calc(78px + 0.7rem);
     width: calc(100% - 0.8rem);
+  }
+}
+
+/* =========================
+   CALENDAR SIZE + MOBILE GAP FIX
+   Only affects Homecoming calendar widget and mobile spacing
+========================= */
+
+/* Slightly smaller calendar widget on desktop/tablet */
+.calendarCard {
+  max-width: 500px;
+  min-height: clamp(220px, 21vw, 280px);
+}
+
+.calendarHeader {
+  min-height: clamp(76px, 6.2vw, 92px);
+  padding: clamp(0.72rem, 1.2vw, 0.95rem) clamp(0.9rem, 1.6vw, 1.25rem);
+  gap: clamp(0.7rem, 1.2vw, 1rem);
+}
+
+.calendarIconWrap {
+  width: clamp(50px, 4.2vw, 62px);
+  height: clamp(50px, 4.2vw, 62px);
+}
+
+.calendarHeaderText strong {
+  font-size: clamp(1.42rem, 2.25vw, 2.15rem);
+}
+
+.calendarHeaderText small {
+  font-size: clamp(0.86rem, 1.2vw, 1.08rem);
+}
+
+.calendarChevronWrap {
+  width: clamp(40px, 3.5vw, 50px);
+  height: clamp(40px, 3.5vw, 50px);
+}
+
+.calendarOptions {
+  top: calc(clamp(76px, 6.2vw, 92px) + 0.7rem);
+}
+
+/* Mobile: reduce the closed calendar reserved height */
+@media (max-width: 620px) {
+  .locationCalendarSection {
+    padding-bottom: 1rem;
+  }
+
+  .calendarCard {
+    max-width: 100%;
+    min-height: 92px;
+  }
+
+  .calendarCardOpen {
+    min-height: 280px;
+  }
+
+  .calendarHeader {
+    min-height: 72px;
+    padding: 0.7rem 0.75rem;
+    gap: 0.58rem;
+    border-width: 1.8px;
+  }
+
+  .calendarIconWrap {
+    width: 46px;
+    height: 46px;
+  }
+
+  .calendarHeaderText strong {
+    font-size: 1.28rem;
+  }
+
+  .calendarHeaderText small {
+    font-size: 0.82rem;
+  }
+
+  .calendarChevronWrap {
+    width: 38px;
+    height: 38px;
+  }
+
+  .calendarOptions {
+    top: calc(72px + 0.65rem);
+    width: calc(100% - 0.8rem);
+  }
+
+  .calendarOption {
+    min-height: 56px;
+    padding: 0.62rem 0.78rem;
+    gap: 0.62rem;
+  }
+
+  .calendarOption span {
+    font-size: 1rem;
+  }
+
+  .calendarProviderIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .rsvpSection {
+    padding-top: 1.5rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 390px) {
+  .locationCalendarSection {
+    padding-bottom: 0.8rem;
+  }
+
+  .calendarCard {
+    min-height: 86px;
+  }
+
+  .calendarCardOpen {
+    min-height: 260px;
+  }
+
+  .calendarHeader {
+    min-height: 68px;
+    padding: 0.65rem 0.7rem;
+    gap: 0.5rem;
+  }
+
+  .calendarIconWrap {
+    width: 42px;
+    height: 42px;
+  }
+
+  .calendarHeaderText strong {
+    font-size: 1.16rem;
+  }
+
+  .calendarHeaderText small {
+    font-size: 0.76rem;
+  }
+
+  .calendarChevronWrap {
+    width: 34px;
+    height: 34px;
+  }
+
+  .calendarOptions {
+    top: calc(68px + 0.6rem);
+    width: calc(100% - 0.65rem);
+  }
+
+  .calendarOption {
+    min-height: 52px;
+    padding: 0.58rem 0.7rem;
+  }
+
+  .calendarOption span {
+    font-size: 0.94rem;
+  }
+
+  .calendarProviderIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .rsvpSection {
+    padding-top: 1.25rem;
   }
 }

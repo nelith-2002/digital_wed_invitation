@@ -156,7 +156,9 @@ export default function HomecomingRSVP() {
           joining us.
         </p>
 
-        <span>Kindly respond by the 20th of August 2026</span>
+        <span className={styles.rsvpDeadlineHighlight}>
+            Kindly respond by the 20th of August 2026
+        </span>
       </div>
 
       <form className={styles.rsvpFormCard} onSubmit={handleSubmit}>

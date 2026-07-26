@@ -269,7 +269,11 @@ export default function HomecomingLocationCalendar() {
             </a>
           </div>
 
-          <div className={styles.calendarCard}>
+          <div
+            className={`${styles.calendarCard} ${
+              isOpen ? styles.calendarCardOpen : ""
+            }`}
+          >
             <button
               type="button"
               className={styles.calendarHeader}

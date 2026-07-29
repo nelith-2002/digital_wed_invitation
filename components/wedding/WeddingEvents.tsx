@@ -288,7 +288,7 @@ export default function WeddingEvents() {
 
         <div className={styles.eventCardImg}>
           <Image
-            src="/wedding/event-reception.png"
+            src="/wedding/event-reception-img.png"
             alt="Reception"
             width={300}
             height={320}

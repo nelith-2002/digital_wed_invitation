@@ -17,76 +17,120 @@ function calculateTimeLeft(): TimeLeft {
   const difference = weddingDate.getTime() - now.getTime();
 
   if (difference <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    return {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
   }
 
   return {
-    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / (1000 * 60)) % 60),
-    seconds: Math.floor((difference / 1000) % 60),
+    days: Math.floor(
+      difference / (1000 * 60 * 60 * 24)
+    ),
+    hours: Math.floor(
+      (difference / (1000 * 60 * 60)) % 24
+    ),
+    minutes: Math.floor(
+      (difference / (1000 * 60)) % 60
+    ),
+    seconds: Math.floor(
+      (difference / 1000) % 60
+    ),
   };
 }
 
 export default function WeddingCountdown() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  /*
+    Initialize the countdown immediately using calculateTimeLeft()
+    instead of setting state synchronously inside useEffect.
+
+    This preserves the same visible behavior while satisfying
+    the React lint rule.
+  */
+  const [timeLeft, setTimeLeft] =
+    useState<TimeLeft>(() => calculateTimeLeft());
 
   useEffect(() => {
-    setTimeLeft(calculateTimeLeft());
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
-    return () => clearInterval(timer);
+
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   const units = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds },
+    {
+      label: "Days",
+      value: timeLeft.days,
+    },
+    {
+      label: "Hours",
+      value: timeLeft.hours,
+    },
+    {
+      label: "Minutes",
+      value: timeLeft.minutes,
+    },
+    {
+      label: "Seconds",
+      value: timeLeft.seconds,
+    },
   ];
 
   return (
     <section className={styles.countdownSection}>
-
       {/* Background Image */}
       <div className={styles.countdownBg}>
         <Image
           src="/wedding/countdown-bg.jpg"
           alt="Countdown background"
           fill
-          style={{ objectFit: "cover" }}
+          style={{
+            objectFit: "cover",
+          }}
         />
       </div>
 
       {/* Inner rectangle border */}
       <div className={styles.countdownBorder}>
-
         {/* Title */}
         <div className={styles.countdownTitle}>
-          <p className={styles.countdownSubtitle}>WE ARE GETTING</p>
-          <h2 className={styles.countdownHeading}>MARRIED</h2>
+          <p className={styles.countdownSubtitle}>
+            WE ARE GETTING
+          </p>
+
+          <h2 className={styles.countdownHeading}>
+            MARRIED
+          </h2>
         </div>
 
         {/* Countdown — boxes row + labels row separate */}
         <div className={styles.countdownWrapper}>
-
           {/* Top row: box : box : box : box */}
           <div className={styles.countdownBoxRow}>
             {units.map((unit, index) => (
-              <div key={unit.label} className={styles.countdownBoxGroup}>
+              <div
+                key={unit.label}
+                className={styles.countdownBoxGroup}
+              >
                 <div className={styles.countdownBox}>
-                  <span className={styles.countdownNumber}>
+                  <span
+                    className={styles.countdownNumber}
+                  >
                     {String(unit.value).padStart(2, "0")}
                   </span>
                 </div>
+
                 {index < units.length - 1 && (
-                  <span className={styles.countdownColon}>:</span>
+                  <span
+                    className={styles.countdownColon}
+                  >
+                    :
+                  </span>
                 )}
               </div>
             ))}
@@ -95,14 +139,15 @@ export default function WeddingCountdown() {
           {/* Bottom row: labels aligned under each box */}
           <div className={styles.countdownLabelRow}>
             {units.map((unit) => (
-              <p key={unit.label} className={styles.countdownLabel}>
+              <p
+                key={unit.label}
+                className={styles.countdownLabel}
+              >
                 {unit.label}
               </p>
             ))}
           </div>
-
         </div>
-
       </div>
     </section>
   );

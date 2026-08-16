@@ -18,7 +18,7 @@ const orbitron = Orbitron({
   weight: ["600", "700", "800", "900"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     default: "Rahal & Lalisha Invitations",
     template: "%s | Rahal & Lalisha",

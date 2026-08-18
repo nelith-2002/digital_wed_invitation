@@ -6,6 +6,7 @@ import IconixCodeCredit from "@/components/common/IconixCodeCredit";
 import {
   ChangeEvent,
   DragEvent,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -43,23 +44,13 @@ const MAX_FILE_SIZE = 500 * 1024 * 1024;
   to avoid creating unnecessary requests.
 */
 const DRIVE_CHUNK_UNIT = 256 * 1024;
-const SMALL_FILE_CHUNK_SIZE = DRIVE_CHUNK_UNIT;
-const MEDIUM_FILE_CHUNK_SIZE = 2 * DRIVE_CHUNK_UNIT;
-const LARGE_FILE_CHUNK_SIZE = 8 * DRIVE_CHUNK_UNIT;
-
+const FALLBACK_CHUNK_SIZE = 16 * DRIVE_CHUNK_UNIT; // 4 MB
+const MAX_CONCURRENT_UPLOADS = 2;
 const MAX_RETRIES = 3;
 const COMPLETION_VISIBLE_MS = 650;
 
-function getChunkSize(fileSize: number) {
-  if (fileSize <= 4 * 1024 * 1024) {
-    return SMALL_FILE_CHUNK_SIZE;
-  }
-
-  if (fileSize <= 32 * 1024 * 1024) {
-    return MEDIUM_FILE_CHUNK_SIZE;
-  }
-
-  return LARGE_FILE_CHUNK_SIZE;
+function getChunkSize() {
+  return FALLBACK_CHUNK_SIZE;
 }
 
 export default function MomentsUploader({
@@ -73,10 +64,19 @@ export default function MomentsUploader({
   */
   const previewUrlsRef = useRef<Set<string>>(new Set());
 
+  /*
+    Keep the screen awake while uploads are active on browsers
+    that support the Screen Wake Lock API. Unsupported browsers
+    simply continue normally.
+  */
+  const wakeLockRef = useRef<WakeLockSentinel | null>(null);
+
   const [items, setItems] = useState<UploadItem[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const [globalMessage, setGlobalMessage] = useState("");
   const [dragActive, setDragActive] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
+  const [isWakeLockActive, setIsWakeLockActive] = useState(false);
 
   const isWedding = event === "wedding";
 
@@ -88,6 +88,185 @@ export default function MomentsUploader({
     ? "Help us keep the beautiful moments you captured from our wedding."
     : "Help us keep the beautiful moments you captured from our homecoming.";
 
+  /*
+    Keep the connection indicator in sync with the browser.
+    These listeners do not interfere with the upload/retry logic;
+    they only give guests clearer feedback.
+  */
+  useEffect(() => {
+    function handleOnline() {
+      setIsOnline(true);
+    }
+
+    function handleOffline() {
+      setIsOnline(false);
+    }
+
+    window.addEventListener(
+      "online",
+      handleOnline
+    );
+
+    window.addEventListener(
+      "offline",
+      handleOffline
+    );
+
+    return () => {
+      window.removeEventListener(
+        "online",
+        handleOnline
+      );
+
+      window.removeEventListener(
+        "offline",
+        handleOffline
+      );
+    };
+  }, []);
+
+  /*
+    Warn guests if they try to refresh, close, or navigate away
+    while an upload is active. Modern browsers display their own
+    generic confirmation message.
+  */
+  useEffect(() => {
+    if (!isUploading) {
+      return;
+    }
+
+    function handleBeforeUnload(
+      event: BeforeUnloadEvent
+    ) {
+      event.preventDefault();
+
+      /*
+        Keep this assignment for browsers that still use the
+        legacy returnValue signal. Browsers control the visible
+        wording of the confirmation dialog.
+      */
+      event.returnValue =
+        "Uploads are still in progress.";
+    }
+
+    window.addEventListener(
+      "beforeunload",
+      handleBeforeUnload
+    );
+
+    return () => {
+      window.removeEventListener(
+        "beforeunload",
+        handleBeforeUnload
+      );
+    };
+  }, [isUploading]);
+
+  /*
+    Keep supported phones/tablets awake only while uploads are
+    active. This is progressive enhancement: if Wake Lock is not
+    available or the device refuses it (for example, low battery),
+    uploads continue normally.
+  */
+  useEffect(() => {
+    if (!isUploading) {
+      return;
+    }
+
+    let cancelled = false;
+
+    async function requestWakeLock() {
+      if (
+        !("wakeLock" in navigator) ||
+        document.visibilityState !==
+          "visible"
+      ) {
+        return;
+      }
+
+      try {
+        const sentinel =
+          await navigator.wakeLock.request(
+            "screen"
+          );
+
+        if (cancelled) {
+          await sentinel.release();
+          return;
+        }
+
+        wakeLockRef.current =
+          sentinel;
+
+        setIsWakeLockActive(
+          true
+        );
+
+        sentinel.addEventListener(
+          "release",
+          () => {
+            if (!cancelled) {
+              setIsWakeLockActive(
+                false
+              );
+            }
+          }
+        );
+      } catch {
+        /*
+          Wake Lock is optional. Never interrupt or fail an upload
+          because the browser/device did not grant it.
+        */
+        setIsWakeLockActive(
+          false
+        );
+      }
+    }
+
+    function handleVisibilityChange() {
+      if (
+        document.visibilityState ===
+          "visible" &&
+        !wakeLockRef.current
+      ) {
+        void requestWakeLock();
+      }
+    }
+
+    void requestWakeLock();
+
+    document.addEventListener(
+      "visibilitychange",
+      handleVisibilityChange
+    );
+
+    return () => {
+      cancelled = true;
+
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
+
+      const currentWakeLock =
+        wakeLockRef.current;
+
+      wakeLockRef.current =
+        null;
+
+      setIsWakeLockActive(
+        false
+      );
+
+      if (
+        currentWakeLock &&
+        !currentWakeLock.released
+      ) {
+        void currentWakeLock.release();
+      }
+    };
+  }, [isUploading]);
+
   const overallProgress = useMemo(() => {
     if (items.length === 0) {
       return 0;
@@ -98,9 +277,28 @@ export default function MomentsUploader({
       0
     );
 
-    return Math.round(
+    /*
+      Use floor instead of round so an average such as 99.5%
+      never displays as 100% while one or more files are still
+      uploading. 100% is reserved for the moment every file has
+      actually reached the success state.
+    */
+    const averageProgress = Math.floor(
       totalProgress / items.length
     );
+
+    const everyItemSucceeded =
+      items.every(
+        (item) =>
+          item.status === "success"
+      );
+
+    return everyItemSucceeded
+      ? 100
+      : Math.min(
+          99,
+          averageProgress
+        );
   }, [items]);
 
   const successfulCount = items.filter(
@@ -113,7 +311,8 @@ export default function MomentsUploader({
 
   const allSuccessful =
     items.length > 0 &&
-    successfulCount === items.length;
+    successfulCount === items.length &&
+    !isUploading;
 
   function createUploadItem(
     file: File
@@ -288,14 +487,45 @@ export default function MomentsUploader({
     update: Partial<UploadItem>
   ) {
     setItems((current) =>
-      current.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              ...update,
-            }
-          : item
-      )
+      current.map((item) => {
+        if (item.id !== id) {
+          return item;
+        }
+
+        /*
+          Upload progress must never move backwards during the
+          same upload/retry cycle. A direct Google upload may fail
+          after the browser has already sent many bytes and then
+          switch to the safe server fallback. Without this guard,
+          that fallback can visually reset a file from e.g. 78%
+          back to 0%, which also makes the overall bar jump down.
+
+          Keep the highest progress already shown to the guest.
+          New files/reset-after-success still naturally start at 0
+          because they are created as new UploadItem objects.
+        */
+        const nextProgress =
+          typeof update.progress ===
+          "number"
+            ? Math.max(
+                item.progress,
+                Math.min(
+                  100,
+                  Math.max(
+                    0,
+                    update.progress
+                  )
+                )
+              )
+            : item.progress;
+
+        return {
+          ...item,
+          ...update,
+          progress:
+            nextProgress,
+        };
+      })
     );
   }
 
@@ -357,6 +587,41 @@ export default function MomentsUploader({
     }
 
     return data.uploadUrl;
+  }
+
+  async function uploadViaServerFallback(
+    file: File,
+    itemId: string
+  ) {
+    const uploadUrl = await createUploadSession(file);
+    let offset = 0;
+    const chunkSize = getChunkSize();
+
+    while (offset < file.size) {
+      const nextOffset = Math.min(offset + chunkSize, file.size);
+      const result = await sendChunk(
+        uploadUrl,
+        file,
+        offset,
+        nextOffset,
+        itemId
+      );
+
+      offset = nextOffset;
+
+      updateItem(itemId, {
+        progress: Math.min(
+          99,
+          Math.round((offset / file.size) * 100)
+        ),
+      });
+
+      if (result.complete) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   async function sendChunk(
@@ -450,31 +715,13 @@ export default function MomentsUploader({
           attempt < MAX_RETRIES
         ) {
           /*
-            Reset the visible progress to the beginning of this
-            chunk before retrying so the bar never pretends that
-            unsent bytes were accepted.
+            Keep the visible high-water mark while retrying.
+            Progress callbacks from the retried chunk are also
+            protected by updateItem(), so neither the individual
+            bar nor the overall bar can move backwards.
           */
-          const confirmedProgress =
-            Math.min(
-              99,
-              Math.round(
-                (
-                  start /
-                  file.size
-                ) * 100
-              )
-            );
-
-          updateItem(
-            itemId,
-            {
-              progress:
-                confirmedProgress,
-            }
-          );
-
           await sleep(
-            700 * attempt
+            750 * 2 ** (attempt - 1)
           );
         }
       }
@@ -499,10 +746,7 @@ export default function MomentsUploader({
   async function uploadOneItem(
     item: UploadItem
   ) {
-    const {
-      id,
-      file,
-    } = item;
+    const { id, file } = item;
 
     updateItem(id, {
       status: "uploading",
@@ -511,92 +755,53 @@ export default function MomentsUploader({
     });
 
     try {
-      const uploadUrl =
-        await createUploadSession(
-          file
+      /*
+        Use the reliable resumable upload path directly.
+
+        The browser sends 4 MB chunks to our existing upload-chunk
+        endpoint, which forwards them to the Google Drive resumable
+        session. This avoids the repeatedly failing browser -> Google
+        direct request while preserving:
+        - resumable uploads,
+        - accurate byte-level progress,
+        - retries,
+        - two-file concurrency,
+        - original file quality.
+      */
+      const completed =
+        await uploadViaServerFallback(
+          file,
+          id
         );
 
-      let offset = 0;
-      const chunkSize =
-        getChunkSize(file.size);
-
-      while (
-        offset < file.size
-      ) {
-        const nextOffset =
-          Math.min(
-            offset + chunkSize,
-            file.size
-          );
-
-        const result =
-          await sendChunk(
-            uploadUrl,
-            file,
-            offset,
-            nextOffset,
-            id
-          );
-
-        offset = nextOffset;
-
-        /*
-          A completed chunk is definitely accepted, so make sure
-          progress cannot visually fall behind a confirmed chunk.
-        */
-        const confirmedProgress =
-          Math.min(
-            99,
-            Math.round(
-              (
-                offset /
-                file.size
-              ) * 100
-            )
-          );
-
-        updateItem(id, {
-          progress:
-            confirmedProgress,
-        });
-
-        if (result.complete) {
-          /*
-            Show a real, confirmed 100% state before changing the
-            entire page to the Thank You screen. This prevents a
-            small single photo from appearing to jump straight
-            from 0% to success.
-          */
-          updateItem(id, {
-            status: "uploading",
-            progress: 100,
-            error: undefined,
-          });
-
-          await sleep(
-            COMPLETION_VISIBLE_MS
-          );
-
-          updateItem(id, {
-            status: "success",
-            progress: 100,
-            error: undefined,
-          });
-
-          return true;
-        }
+      if (!completed) {
+        throw new Error(
+          "The upload finished sending, but Google Drive did not confirm the file. Please retry this file."
+        );
       }
 
-      throw new Error(
-        "The upload finished sending, but Google Drive did not confirm the file. Please retry this file."
+      /*
+        Only show 100% once Google Drive has actually confirmed
+        the file. This keeps the individual and overall progress
+        indicators consistent.
+      */
+      updateItem(id, {
+        status: "success",
+        progress: 100,
+        error: undefined,
+      });
+
+      await sleep(
+        COMPLETION_VISIBLE_MS
       );
+
+      return true;
     } catch (error) {
       let message =
         "We couldn't upload this file. Please try again.";
 
       if (
-        typeof navigator !==
-          "undefined" &&
+        typeof navigator !== "undefined" &&
         !navigator.onLine
       ) {
         message =
@@ -655,26 +860,28 @@ export default function MomentsUploader({
     let uploadFailures = 0;
 
     try {
-      /*
-        Upload files sequentially.
+      let nextItemIndex = 0;
 
-        This prevents one guest's phone from
-        opening many large simultaneous uploads,
-        which is safer on mobile connections.
-      */
-      for (
-        const item of
-        pendingItems
-      ) {
-        const succeeded =
-          await uploadOneItem(
-            item
-          );
+      async function uploadWorker() {
+        while (nextItemIndex < pendingItems.length) {
+          const currentIndex = nextItemIndex++;
+          const item = pendingItems[currentIndex];
+          const succeeded = await uploadOneItem(item);
 
-        if (!succeeded) {
-          uploadFailures++;
+          if (!succeeded) {
+            uploadFailures++;
+          }
         }
       }
+
+      const workerCount = Math.min(
+        MAX_CONCURRENT_UPLOADS,
+        pendingItems.length
+      );
+
+      await Promise.all(
+        Array.from({ length: workerCount }, () => uploadWorker())
+      );
 
       if (
         uploadFailures > 0
@@ -888,6 +1095,42 @@ export default function MomentsUploader({
                 Photos or videos · up
                 to 500 MB each
               </p>
+            </div>
+
+            <div
+              className={`momentsGuestAssurance ${
+                isOnline
+                  ? "momentsGuestAssuranceOnline"
+                  : "momentsGuestAssuranceOffline"
+              }`}
+              role="status"
+              aria-live="polite"
+            >
+              <div className="momentsGuestAssuranceItem">
+                <span
+                  className="momentsGuestAssuranceDot"
+                  aria-hidden="true"
+                />
+
+                <p>
+                  {isOnline
+                    ? "Internet connection ready"
+                    : "You are offline — reconnect before uploading"}
+                </p>
+              </div>
+
+              <div className="momentsGuestAssuranceItem">
+                <span
+                  className="momentsGuestAssuranceShield"
+                  aria-hidden="true"
+                >
+                  ✓
+                </span>
+
+                <p>
+                  Your memories are shared privately with Rahal &amp; Lalisha.
+                </p>
+              </div>
             </div>
 
             {globalMessage && (
@@ -1132,6 +1375,9 @@ export default function MomentsUploader({
                     open until every
                     upload is
                     complete.
+                    {isWakeLockActive
+                      ? " Your screen will stay awake while uploading."
+                      : ""}
                   </p>
                 </div>
               </section>

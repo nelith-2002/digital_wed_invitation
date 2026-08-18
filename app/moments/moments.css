@@ -2915,3 +2915,696 @@ body:has(.momentsHomecoming) {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =====================================================
+   MOMENTS - ELEGANT PAGE MOTION
+   Subtle entrance and ambient animations only.
+   No upload logic, layout, progress behavior, or theme
+   styling is changed by this section.
+===================================================== */
+
+/* Page ambience */
+.momentsBackdropOne {
+  animation:
+    momentsBackdropFloatOne
+    12s ease-in-out infinite alternate;
+}
+
+.momentsBackdropTwo {
+  animation:
+    momentsBackdropFloatTwo
+    14s ease-in-out infinite alternate;
+}
+
+@keyframes momentsBackdropFloatOne {
+  from {
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+
+  to {
+    transform:
+      translate3d(-1.1rem, 1.25rem, 0)
+      scale(1.045);
+  }
+}
+
+@keyframes momentsBackdropFloatTwo {
+  from {
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+
+  to {
+    transform:
+      translate3d(1.15rem, -1rem, 0)
+      scale(1.055);
+  }
+}
+
+
+/* Main portal reveal */
+.momentsShell {
+  animation:
+    momentsShellReveal
+    0.72s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+@keyframes momentsShellReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(16px)
+      scale(0.992);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* Header stagger */
+.momentsLogoWrap {
+  animation:
+    momentsHeaderRise
+    0.62s
+    0.08s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+.momentsEyebrow {
+  animation:
+    momentsHeaderRise
+    0.62s
+    0.15s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+.momentsHeader h1 {
+  animation:
+    momentsHeaderRise
+    0.68s
+    0.22s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+.momentsIntro {
+  animation:
+    momentsHeaderRise
+    0.68s
+    0.29s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+.momentsHeaderDivider {
+  animation:
+    momentsDividerReveal
+    0.72s
+    0.34s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+@keyframes momentsHeaderRise {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+@keyframes momentsDividerReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      scaleX(0.72);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      scaleX(1);
+  }
+}
+
+
+/* Upload area reveal */
+.momentsDropzone {
+  animation:
+    momentsSectionFade
+    0.7s
+    0.38s
+    ease-out
+    both;
+}
+
+@keyframes momentsSectionFade {
+  from {
+    opacity: 0;
+
+    filter:
+      blur(2px);
+  }
+
+  to {
+    opacity: 1;
+
+    filter:
+      blur(0);
+  }
+}
+
+
+/* Gentle upload icon breathing motion */
+.momentsUploadIcon {
+  animation:
+    momentsUploadIconBreath
+    3.4s
+    1s
+    ease-in-out
+    infinite;
+}
+
+@keyframes momentsUploadIconBreath {
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translateY(-2px)
+      scale(1.025);
+  }
+}
+
+
+/* Selected-file queue reveal */
+.momentsQueue {
+  animation:
+    momentsQueueReveal
+    0.48s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+@keyframes momentsQueueReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(9px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/*
+  Individual cards animate only when they first enter the DOM.
+  The delay is intentionally capped so a large selection does
+  not make guests wait for the queue to become usable.
+*/
+.momentsFileCard {
+  animation:
+    momentsFileCardReveal
+    0.42s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+.momentsFileCard:nth-child(1) {
+  animation-delay: 0.02s;
+}
+
+.momentsFileCard:nth-child(2) {
+  animation-delay: 0.055s;
+}
+
+.momentsFileCard:nth-child(3) {
+  animation-delay: 0.09s;
+}
+
+.momentsFileCard:nth-child(4) {
+  animation-delay: 0.125s;
+}
+
+.momentsFileCard:nth-child(5) {
+  animation-delay: 0.16s;
+}
+
+.momentsFileCard:nth-child(n + 6) {
+  animation-delay: 0.18s;
+}
+
+@keyframes momentsFileCardReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(7px)
+      scale(0.995);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* Error appearance */
+.momentsGlobalError,
+.momentsFileError {
+  animation:
+    momentsErrorReveal
+    0.34s
+    ease-out
+    both;
+}
+
+@keyframes momentsErrorReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* Success state entrance */
+.momentsSuccess {
+  animation:
+    momentsSuccessReveal
+    0.58s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+.momentsSuccessEyebrow {
+  animation:
+    momentsSuccessTextReveal
+    0.5s
+    0.16s
+    ease-out
+    both;
+}
+
+.momentsSuccess h2 {
+  animation:
+    momentsSuccessTextReveal
+    0.55s
+    0.22s
+    ease-out
+    both;
+}
+
+.momentsSuccess > p {
+  animation:
+    momentsSuccessTextReveal
+    0.55s
+    0.28s
+    ease-out
+    both;
+}
+
+.momentsSuccess .momentsPrimaryButton {
+  animation:
+    momentsSuccessTextReveal
+    0.55s
+    0.34s
+    ease-out
+    both;
+}
+
+@keyframes momentsSuccessReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(10px)
+      scale(0.992);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes momentsSuccessTextReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* Footer softly follows the main content */
+.momentsFooter {
+  animation:
+    momentsFooterReveal
+    0.6s
+    0.42s
+    ease-out
+    both;
+}
+
+@keyframes momentsFooterReveal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =====================================================
+   MOMENTS - MOTION SAFETY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .momentsBackdropOne,
+  .momentsBackdropTwo,
+  .momentsShell,
+  .momentsLogoWrap,
+  .momentsEyebrow,
+  .momentsHeader h1,
+  .momentsIntro,
+  .momentsHeaderDivider,
+  .momentsDropzone,
+  .momentsUploadIcon,
+  .momentsQueue,
+  .momentsFileCard,
+  .momentsGlobalError,
+  .momentsFileError,
+  .momentsSuccess,
+  .momentsSuccessEyebrow,
+  .momentsSuccess h2,
+  .momentsSuccess > p,
+  .momentsSuccess .momentsPrimaryButton,
+  .momentsFooter {
+    animation: none !important;
+  }
+}
+
+/* =====================================================
+   MOMENTS - GUEST SAFETY / CONNECTION / PRIVACY
+   Adds clear non-technical feedback without changing
+   the existing upload layout or behavior.
+===================================================== */
+
+.momentsGuestAssurance {
+  width: 100%;
+
+  margin-top: 0.85rem;
+
+  padding:
+    0.72rem 0.82rem;
+
+  display: grid;
+  gap: 0.52rem;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--moments-accent) 13%,
+      transparent
+    );
+
+  border-radius: 0.9rem;
+
+  background:
+    rgba(255, 255, 255, 0.58);
+
+  box-shadow:
+    inset 0 1px 0
+    rgba(255, 255, 255, 0.72);
+}
+
+
+.momentsGuestAssuranceItem {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.55rem;
+}
+
+
+.momentsGuestAssuranceItem p {
+  margin: 0;
+
+  color: var(--moments-muted);
+
+  font-size: 0.69rem;
+
+  font-weight: 500;
+
+  line-height: 1.45;
+}
+
+
+.momentsGuestAssuranceDot {
+  position: relative;
+
+  width: 0.5rem;
+  height: 0.5rem;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: var(--moments-success);
+
+  box-shadow:
+    0 0 0 0
+    rgba(40, 116, 81, 0.18);
+
+  animation:
+    momentsConnectionPulse
+    2s ease-out infinite;
+}
+
+
+.momentsGuestAssuranceOffline {
+  border-color:
+    rgba(168, 59, 75, 0.22);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--moments-error-soft),
+      rgba(255, 255, 255, 0.7)
+    );
+}
+
+
+.momentsGuestAssuranceOffline
+.momentsGuestAssuranceDot {
+  background:
+    var(--moments-error);
+
+  box-shadow: none;
+
+  animation: none;
+}
+
+
+.momentsGuestAssuranceOffline
+.momentsGuestAssuranceItem:first-child
+p {
+  color:
+    var(--moments-error-dark);
+
+  font-weight: 700;
+}
+
+
+.momentsGuestAssuranceShield {
+  width: 1.05rem;
+  height: 1.05rem;
+
+  flex: 0 0 auto;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    var(--moments-accent);
+
+  font-size: 0.58rem;
+
+  font-weight: 800;
+}
+
+
+@keyframes momentsConnectionPulse {
+  0% {
+    box-shadow:
+      0 0 0 0
+      rgba(40, 116, 81, 0.2);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 0.28rem
+      rgba(40, 116, 81, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0
+      rgba(40, 116, 81, 0);
+  }
+}
+
+
+@media (max-width: 640px) {
+  .momentsGuestAssurance {
+    margin-top: 0.7rem;
+
+    padding:
+      0.65rem 0.7rem;
+
+    gap: 0.45rem;
+  }
+
+
+  .momentsGuestAssuranceItem {
+    gap: 0.48rem;
+  }
+
+
+  .momentsGuestAssuranceItem p {
+    font-size: 0.63rem;
+  }
+}
+
+
+@media (max-width: 390px) {
+  .momentsGuestAssurance {
+    padding:
+      0.6rem 0.62rem;
+  }
+
+
+  .momentsGuestAssuranceItem p {
+    font-size: 0.59rem;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .momentsGuestAssuranceDot {
+    animation: none !important;
+  }
+}
+
